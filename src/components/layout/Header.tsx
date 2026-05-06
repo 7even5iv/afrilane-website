@@ -11,7 +11,6 @@ import {
     FaInfoCircle,
     FaPhoneAlt,
     FaLinkedin,
-    FaTwitter,
     FaFacebook
 } from "react-icons/fa";
 import logo from "../../assets/logo.png";
