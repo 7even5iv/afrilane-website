@@ -14,6 +14,33 @@ export const PARTNERS = [
   { name: 'Pearson|Vue', logo: '/logos/pearson-vue.png' },
 ];
 
+export const COURSES = [
+  {
+    id: 1,
+    title: 'Cisco CCNA 200-301',
+    category: 'Réseaux',
+    duration: '40h',
+    level: 'Débutant à Intermédiaire',
+    description: 'Maîtrisez les bases des réseaux et préparez la certification mondiale Cisco.',
+  },
+  {
+    id: 2,
+    title: 'CCNP ENTERPRISE',
+    category: 'Réseaux',
+    duration: '35h',
+    level: 'Professionnel',
+    description: 'La référence mondiale pour la gestion de projet professionnelle.',
+  },
+  {
+    id: 3,
+    title: 'Sécurité Informatique',
+    category: 'Cybersécurité',
+    duration: '50h',
+    level: 'Intermédiaire',
+    description: 'Protégez les infrastructures critiques et devenez un expert en sécurité.',
+  },
+];
+
 export const COLORS = {
   primary: '#0056b3',
   secondary: '#f4f4f4',
