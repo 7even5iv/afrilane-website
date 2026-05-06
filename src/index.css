@@ -1,0 +1,15 @@
+@import "tailwindcss";
+
+/* On définit la charte AFRILANE ici dans le bloc @theme */
+@theme {
+  --color-afrilane-blue: #0056b3;
+  --color-afrilane-white: #ffffff;
+  --color-afrilane-light-grey: #f4f4f4;
+  --color-afrilane-dark-grey: #333333;
+}
+
+/* Maintenant on peut utiliser @apply avec nos nouvelles couleurs */
+body {
+  @apply bg-afrilane-white text-afrilane-dark-grey;
+  font-family: 'Inter', sans-serif; /* Ou Montserrat si tu l'as installée */
+}
