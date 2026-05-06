@@ -20,12 +20,12 @@ export const COURSES = [
     title: 'Cisco CCNA 200-301',
     category: 'Réseaux',
     duration: '40h',
-    level: 'Débutant à Intermédiaire',
+    level: 'Associé',
     description: 'Maîtrisez les bases des réseaux et préparez la certification mondiale Cisco.',
   },
   {
     id: 2,
-    title: 'CCNP ENTERPRISE',
+    title: 'cisco CCNP ENTERPRISE',
     category: 'Réseaux',
     duration: '35h',
     level: 'Professionnel',
@@ -33,10 +33,10 @@ export const COURSES = [
   },
   {
     id: 3,
-    title: 'Sécurité Informatique',
+    title: 'cisco CCIE SECURITY',
     category: 'Cybersécurité',
     duration: '50h',
-    level: 'Intermédiaire',
+    level: 'Expert',
     description: 'Protégez les infrastructures critiques et devenez un expert en sécurité.',
   },
 ];

@@ -35,7 +35,7 @@ const Home = () => {
             Notre Valeur Ajoutée
           </h2>
           <h3 className="text-3xl md:text-4xl font-black text-afrilane-dark-grey mb-16">
-            Pourquoi faire confiance à <span className="text-afrilane-blue">Afrilane</span> ?
+            Pourquoi faire confiance à <span className="text-afrilane-blue">AFRILANE</span> ?
           </h3>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
