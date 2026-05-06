@@ -50,7 +50,7 @@ const Home = () => {
               </div>
               <h4 className="text-xl font-bold mb-4 text-afrilane-dark-grey uppercase tracking-tight">Centres de Certification</h4>
               <p className="text-gray-500 leading-relaxed text-sm">
-                Partenaire agréé <strong>PECB, Cisco et Huawei</strong>. Nous vous préparons et vous faisons passer les examens internationaux les plus prestigieux du marché.
+                Partenaire agréé <strong>PECB, Cisco et Microsoft</strong>. Nous vous préparons et vous faisons passer les examens internationaux les plus prestigieux du marché.
               </p>
             </div>
 
