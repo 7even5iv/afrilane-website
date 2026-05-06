@@ -25,7 +25,7 @@ export const COURSES = [
   },
   {
     id: 2,
-    title: 'cisco CCNP ENTERPRISE',
+    title: 'Cisco CCNP ENTERPRISE',
     category: 'Réseaux',
     duration: '35h',
     level: 'Professionnel',
@@ -33,7 +33,7 @@ export const COURSES = [
   },
   {
     id: 3,
-    title: 'cisco CCIE SECURITY',
+    title: 'Cisco CCIE SECURITY',
     category: 'Cybersécurité',
     duration: '50h',
     level: 'Expert',
