@@ -7,9 +7,7 @@ import {
     FaMobileAlt,
     FaClock,
     FaLinkedin,
-    FaTwitter,
     FaFacebook,
-    FaGithub,
     FaArrowUp,
     FaRegCopyright,
     FaHeart
@@ -81,24 +79,14 @@ const Footer = () => {
             hover: "hover:bg-blue-600",
             label: "LinkedIn"
         },
-        {
-            Icon: FaTwitter,
-            href: "https://twitter.com/afrilane",
-            hover: "hover:bg-sky-500",
-            label: "Twitter"
-        },
+        
         {
             Icon: FaFacebook,
             href: "https://facebook.com/afrilane",
             hover: "hover:bg-blue-700",
             label: "Facebook"
         },
-        {
-            Icon: FaGithub,
-            href: "https://github.com/afrilane",
-            hover: "hover:bg-gray-700",
-            label: "GitHub"
-        }
+        
     ];
 
     const contactInfo = [
