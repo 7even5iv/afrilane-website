@@ -10,6 +10,7 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import MentionsLegales from './pages/MentionsLegales';
 import Confidentialite from './pages/Confidentialite';
+import Contact from './pages/Contact';
 
 // UI Components
 import LoadingScreen from './components/ui/LoadingScreen';
@@ -41,7 +42,7 @@ function App() {
         {!isLoading && (
           <>
             <Header />
-            <main className="flex-grow">
+            <main className="flex-grow pt-28 lg:pt-32"> 
               <Routes>
                 {/* Route pour la page d'accueil */}
                 <Route path="/" element={<Home />} />
@@ -49,6 +50,7 @@ function App() {
                 {/* Routes pour les pages légales */}
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />
+                <Route path="/contact" element={<Contact />} />
 
                 {/* On pourra ajouter /formations, /services, etc. ici plus tard */}
               </Routes>
