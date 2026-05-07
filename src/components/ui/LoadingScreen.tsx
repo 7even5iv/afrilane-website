@@ -77,7 +77,7 @@ const LoadingScreen = () => {
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="relative mb-10"
+                    className="relative mb-6"
                 >
 
                     {/* Glow */}
@@ -101,6 +101,31 @@ const LoadingScreen = () => {
                     />
 
                 </motion.div>
+
+                {/* AFRILAND NETWORK EXPERT Text */}
+                <motion.h2
+                    initial={{
+                        opacity: 0,
+                        y: 10
+                    }}
+                    animate={{
+                        opacity: 1,
+                        y: 0
+                    }}
+                    transition={{
+                        delay: 0.2,
+                        duration: 0.6
+                    }}
+                    className="
+                        text-xl
+                        font-bold
+                        tracking-wide
+                        text-blue-500
+                        mb-8
+                    "
+                >
+                    AFRILAND NETWORK EXPERT
+                </motion.h2>
 
                 {/* Progress Bar */}
                 <div className="
@@ -163,7 +188,7 @@ const LoadingScreen = () => {
                         font-bold
                         uppercase
                         tracking-[0.45em]
-                        text-blue-600
+                        text-blue-500
                     ">
                         Expertise & Certification
                     </p>
@@ -182,7 +207,7 @@ const LoadingScreen = () => {
                             text-gray-400
                         "
                     >
-                        Chargement de l’expérience...
+                        Chargement de l'expérience...
                     </motion.p>
 
                 </motion.div>
