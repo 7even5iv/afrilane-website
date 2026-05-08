@@ -128,8 +128,8 @@ const Footer = () => {
                                 />
                             </Link>
                             <p className="text-gray-400 text-sm leading-relaxed">
-                                Cabinet d'ingénierie informatique spécialisé
-                                dans la formation certifiante, l'audit et
+                                Entreprise d'ingénierie informatique spécialisée
+                                dans la formation certifiante, la formation professionnelle, l'audit et conseil IT. Nous sommes passionnés par
                                 l'intégration de solutions technologiques
                                 au Cameroun.
                             </p>

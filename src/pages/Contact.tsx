@@ -118,6 +118,7 @@ const Contact = () => {
                                     <label className="text-sm font-bold text-gray-700">Sujet</label>
                                     <select className="w-full p-4 rounded-xl bg-gray-50 border border-transparent focus:bg-white focus:border-blue-500 focus:ring-0 outline-none transition-all">
                                         <option>Formation Certifiante</option>
+                                        <option>Formation professionnelle</option>
                                         <option>Examen de Certification</option>
                                         <option>Audit & Conseil IT</option>
                                         <option>Autre demande</option>
