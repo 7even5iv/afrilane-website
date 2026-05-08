@@ -285,17 +285,21 @@ const Header = () => {
                                     {/* SOCIALS */}
                                     <div className="flex justify-center gap-4 mt-8">
                                         <a
-                                            href="#"
-                                            className="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-600 hover:text-white flex items-center justify-center transition-all"
+                                            href="https://linkedin.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-600 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
                                         >
-                                            <FaLinkedin />
+                                            <FaLinkedin size={18} />
                                         </a>
 
                                         <a
-                                            href="#"
-                                            className="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-700 hover:text-white flex items-center justify-center transition-all"
+                                            href="https://facebook.com"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            className="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-700 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
                                         >
-                                            <FaFacebook />
+                                            <FaFacebook size={18} />
                                         </a>
                                     </div>
                                 </div>
