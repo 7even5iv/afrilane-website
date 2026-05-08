@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom"; // 1. Import de Link
 import {
   FaGraduationCap,
   FaRocket,
@@ -45,7 +46,7 @@ const Hero = () => {
   return (
     <section className="relative bg-gradient-to-br from-white via-gray-50 to-blue-50 pt-16 pb-40 lg:pt-24 lg:pb-44 overflow-hidden">
 
-      {/* Background */}
+      {/* Background blobs */}
       <motion.div
         className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20"
         animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
@@ -90,22 +91,29 @@ const Hero = () => {
             </div>
 
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <motion.button
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-white font-bold bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg"
-                whileHover={{ scale: 1.05, y: -3 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <FaGraduationCap />
-                Commencer ma certification
-              </motion.button>
+              {/* LIEN VERS LES CERTIFICATIONS */}
+              <Link to="/certifications" className="w-full sm:w-auto">
+                <motion.button
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-white font-bold bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg"
+                  whileHover={{ scale: 1.05, y: -3 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaGraduationCap />
+                  Commencer ma certification
+                </motion.button>
+              </Link>
 
-              <motion.button
-                className="inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaRocket />
-                Voir les services
-              </motion.button>
+              {/* LIEN VERS LES SERVICES (CORRECTIF ICI) */}
+              <Link to="/expertise" className="w-full sm:w-auto">
+                <motion.button
+                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaRocket />
+                  Voir les services
+                </motion.button>
+              </Link>
             </div>
 
             <div className="mt-8 flex items-center gap-3 text-sm text-gray-500">
@@ -165,7 +173,7 @@ const Hero = () => {
         </motion.div>
       </div>
 
-      {/* SCROLL FIX */}
+      {/* SCROLL INDICATOR */}
       <motion.div
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-30"
         animate={{ y: [0, 8, 0] }}
