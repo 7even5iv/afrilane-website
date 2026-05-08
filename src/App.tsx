@@ -11,6 +11,7 @@ import Home from './pages/Home';
 import MentionsLegales from './pages/MentionsLegales';
 import Confidentialite from './pages/Confidentialite';
 import Contact from './pages/Contact';
+import Services from './pages/Services';
 
 // UI Components
 import LoadingScreen from './components/ui/LoadingScreen';
@@ -51,6 +52,7 @@ function App() {
                 <Route path="/mentions-legales" element={<MentionsLegales />} />
                 <Route path="/confidentialite" element={<Confidentialite />} />
                 <Route path="/contact" element={<Contact />} />
+                <Route path="/expertise" element={<Services />} />
 
                 {/* On pourra ajouter /formations, /services, etc. ici plus tard */}
               </Routes>
