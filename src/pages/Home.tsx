@@ -84,7 +84,7 @@ const Home = () => {
             className="relative -top-12"
           >
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-              {PARTNERS.slice(0, 4).map((partner) => (
+              {PARTNERS.slice(0, 5).map((partner) => (
                 <PartnerCard
                   key={partner.name}
                   name={partner.name}

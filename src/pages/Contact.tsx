@@ -7,7 +7,7 @@ const Contact = () => {
             icon: FaPhoneAlt,
             title: "Téléphone",
             detail: "+237 222 31 16 01 / 699 06 43 13",
-            description: "Du lundi au vendredi, 08h - 18h",
+            description: "De lundi à samedi, 08h - 18h",
             color: "text-blue-600",
             bg: "bg-blue-50"
         },

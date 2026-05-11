@@ -101,17 +101,9 @@ const PartnerCard = ({
           transition={{
             duration: 0.3
           }}
-          className="
-                        max-h-16
-                        w-auto
-                        object-contain
-                        grayscale
-                        opacity-70
-                        group-hover:grayscale-0
-                        group-hover:opacity-100
-                        transition-all
-                        duration-500
-                    "
+          className="object-cover transition-all duration-[1.5s] 
+          ease-out group-hover:scale-110 
+          md:grayscale md:group-hover:grayscale-0"
         />
 
         {/* Fallback */}

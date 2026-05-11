@@ -82,7 +82,7 @@ const Footer = () => {
     const contactInfo = [
         { icon: FaPhoneAlt, text: "+237 222 31 16 01", href: "tel:+237222311601" },
         { icon: FaMobileAlt, text: "+237 699 06 43 13", href: "tel:+237699064313" },
-        { icon: FaClock, text: "Lun - Ven : 08h00 - 18h00", isStatic: true }
+        { icon: FaClock, text: "Lun - Sam : 08h00 - 18h00", isStatic: true }
     ];
 
     return (
