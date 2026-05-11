@@ -22,6 +22,7 @@ export const COURSES = [
     duration: '40h',
     level: 'Associé',
     description: 'Maîtrisez les bases des réseaux et préparez la certification mondiale Cisco.',
+    imageUrl: '/images/ccna.png', // Ajoutez le chemin de votre image
   },
   {
     id: 2,
@@ -30,6 +31,7 @@ export const COURSES = [
     duration: '35h',
     level: 'Professionnel',
     description: 'La référence mondiale pour la gestion de projet professionnelle.',
+    imageUrl: '/images/ccnp.jpg',
   },
   {
     id: 3,
@@ -38,6 +40,7 @@ export const COURSES = [
     duration: '50h',
     level: 'Expert',
     description: 'Protégez les infrastructures critiques et devenez un expert en sécurité.',
+    imageUrl: '/images/ccie.png',
   },
 ];
 
