@@ -44,6 +44,17 @@ export const COURSES = [
   },
 ];
 
+export const CLIENTS = [
+  { name: 'ARMP', logo: '/logos/clients/snh.png' },
+  { name: 'Croix-rouge', logo: '/logos/clients/camtel.png' },
+  { name: 'Nexttel', logo: '/logos/clients/beac.png' },
+  { name: 'MINFOPRA', logo: '/logos/clients/orange.png' },
+  { name: 'SOFITOUL', logo: '/logos/clients/mtn.png' },
+  { name: 'IHS', logo: '/logos/clients/afriland.png' },
+  { name: 'Port Autonome de Kribi', logo: '/logos/clients/pad.png' },
+  { name: 'Min Travaux publics', logo: '/logos/clients/eneo.png' },
+];
+
 export const COLORS = {
   primary: '#0056b3',
   secondary: '#f4f4f4',
