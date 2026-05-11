@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import Hero from "../components/sections/Hero";
 import Courses from "../components/sections/Courses";
 import PartnerCard from "../components/ui/PartnerCard";
+import Clients from '../components/sections/Clients';
 
 import { PARTNERS } from "../constants";
 
@@ -186,6 +187,9 @@ const Home = () => {
 
       {/* COURSES */}
       <Courses />
+
+      {/* Ajout des clients ici */}
+      <Clients />
     </div>
   );
 };
