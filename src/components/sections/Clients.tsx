@@ -1,5 +1,7 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import ClientCard from "../ui/ClientCard";
+import PartnerModal from "../ui/PartnerModal";
 
 const CLIENTS_DATA = [
     { name: 'ARMP', logo: '/logos/clients/logo_armp.png', industry: 'Régulation Publique' },
@@ -13,10 +15,12 @@ const CLIENTS_DATA = [
     { name: 'Min Travaux Publics', logo: '/logos/clients/mintp.png', industry: 'Infrastructures & Génie civil' },
     { name: 'Afreetech', logo: '/logos/clients/afreetech.png', industry: 'Technologie' },
     { name: 'CFAO', logo: '/logos/clients/cfao.png', industry: 'Technologie & Energie' },
-    { name: 'CENADI', logo: '/logos/clients/cenadi.png', industry: 'Formations & informatique' },
+    { name: 'CENADI', logo: '/logos/clients/cenadi.png', industry: 'Formations & Informatique' },
 ];
 
 const Clients = () => {
+    const [isPartnerModalOpen, setIsPartnerModalOpen] = useState(false);
+
     return (
         <section className="py-32 bg-[#F8FAFC]">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -47,8 +51,7 @@ const Clients = () => {
                     />
                 </div>
 
-                {/* GRILLE DE CARTES AGRANDIES */}
-                {/* On passe le gap à 12 pour laisser de la place aux grandes cartes */}
+                {/* GRILLE DE CARTES */}
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
                     {CLIENTS_DATA.map((client, index) => (
                         <motion.div
@@ -57,7 +60,7 @@ const Clients = () => {
                             whileInView={{ opacity: 1, y: 0 }}
                             transition={{
                                 duration: 0.6,
-                                delay: (index % 3) * 0.1, // Animation décalée par colonne
+                                delay: (index % 3) * 0.1,
                                 ease: "easeOut"
                             }}
                             viewport={{ once: true, margin: "-100px" }}
@@ -78,7 +81,6 @@ const Clients = () => {
                     viewport={{ once: true }}
                     className="mt-32 p-10 md:p-16 bg-gradient-to-r from-blue-600 to-blue-700 rounded-[3rem] flex flex-col lg:flex-row items-center justify-between gap-10 shadow-[0_30px_60px_-15px_rgba(59,130,246,0.3)] relative overflow-hidden"
                 >
-                    {/* Éléments de design en arrière-plan */}
                     <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -mr-48 -mt-48" />
                     <div className="absolute bottom-0 left-0 w-64 h-64 bg-blue-400/20 rounded-full blur-2xl -ml-32 -mb-32" />
 
@@ -92,7 +94,8 @@ const Clients = () => {
                     </div>
 
                     <motion.button
-                        whileHover={{ scale: 1.05, boxShadow: "0 20px 40px rgba(0,0,0,0.2)" }}
+                        onClick={() => setIsPartnerModalOpen(true)}
+                        whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="bg-white text-blue-600 px-12 py-5 rounded-2xl font-black text-lg hover:bg-gray-50 transition-all whitespace-nowrap relative z-10 shadow-2xl"
                     >
@@ -100,6 +103,12 @@ const Clients = () => {
                     </motion.button>
                 </motion.div>
             </div>
+
+            {/* LIGNE MANQUANTE AJOUTÉE ICI : Rendu de la modale */}
+            <PartnerModal 
+                isOpen={isPartnerModalOpen} 
+                onClose={() => setIsPartnerModalOpen(false)} 
+            />
         </section>
     );
 };
