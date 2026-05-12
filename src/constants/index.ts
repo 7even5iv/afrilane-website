@@ -67,6 +67,66 @@ export const TESTIMONIALS = [
   },
 ];
 
+export interface Program {
+    id: string;
+    type: 'formation' | 'certification';
+    title: string;
+    category: string;
+    price: number;
+    duration: string;
+    examIncluded: boolean;
+    description: string;
+}
+
+export const CERTIFICATIONS_DATA = [
+  // RÉSEAUX
+  {
+    id: "ccna",
+    name: "Cisco CCNA 200-301",
+    provider: "Cisco",
+    category: "Réseaux",
+    trainingPrice: 150000,
+    examPrice: 215000,
+    duration: "40h",
+    description: "Installation, configuration et dépannage des réseaux d'entreprise."
+  },
+  // SÉCURITÉ
+  {
+    id: "sec-plus",
+    name: "CompTIA Security+",
+    provider: "CompTIA",
+    category: "Sécurité",
+    trainingPrice: 175000,
+    examPrice: 245000,
+    duration: "40h",
+    description: "Les bases fondamentales de la cybersécurité mondiale."
+  },
+  {
+    id: "iso-27001",
+    name: "ISO/IEC 27001 Lead Implementer",
+    provider: "PECB",
+    category: "Sécurité",
+    trainingPrice: 450000,
+    examPrice: 0, 
+    duration: "5 Jours",
+    description: "Devenez expert en mise en œuvre de systèmes de management de la sécurité."
+  },
+  // MANAGEMENT
+  {
+    id: "pmp",
+    name: "PMP - Gestion de Projet",
+    provider: "PMI",
+    category: "Management",
+    trainingPrice: 350000,
+    examPrice: 405000,
+    duration: "35h",
+    description: "La certification n°1 mondiale pour les chefs de projet."
+  }
+];
+
+// Liste des catégories pour les filtres
+export const CATEGORIES = ["Tous", "Réseaux", "Sécurité", "Management", "Cloud"];
+
 export const COLORS = {
   primary: '#0056b3',
   secondary: '#f4f4f4',
