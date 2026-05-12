@@ -88,7 +88,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 250000,
     examPrice: 190000,
     duration: "40h",
-    description: "Installation, configuration et dépannage des réseaux d'entreprise."
+    description: "Installation, configuration et dépannage des réseaux d'entreprise.",
+    image: '/images/ccna.png'
   },
   {
     id: "ccnp",
@@ -98,7 +99,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 250000,
     examPrice: 250000,
     duration: "35h",
-    description: "Conception et gestion avancée des réseaux d'entreprise."
+    description: "Conception et gestion avancée des réseaux d'entreprise.",
+    image: '/images/ccnp.jpg'
   },
   // SÉCURITÉ
   {
