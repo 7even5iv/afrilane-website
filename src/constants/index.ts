@@ -90,6 +90,16 @@ export const CERTIFICATIONS_DATA = [
     duration: "40h",
     description: "Installation, configuration et dépannage des réseaux d'entreprise."
   },
+  {
+    id: "ccnp",
+    name: "Cisco CCNP Enterprise",
+    provider: "Cisco",
+    category: "Réseaux",
+    trainingPrice: 250000,
+    examPrice: 300000,
+    duration: "35h",
+    description: "Conception et gestion avancée des réseaux d'entreprise."
+  },
   // SÉCURITÉ
   {
     id: "sec-plus",
@@ -111,6 +121,47 @@ export const CERTIFICATIONS_DATA = [
     duration: "5 Jours",
     description: "Devenez expert en mise en œuvre de systèmes de management de la sécurité."
   },
+  {
+    id: "ceh",
+    name: "Certified Ethical Hacker (CEH)",
+    provider: "EC-Council",
+    category: "Sécurité",
+    trainingPrice: 200000,
+    examPrice: 300000,
+    duration: "40h",
+    description: "Apprenez les techniques de piratage éthique pour protéger les systèmes."
+  },
+  {
+    id: "fortinet",
+    name: "Fortinet NSE 4",
+    provider: "Fortinet",
+    category: "Sécurité", 
+    trainingPrice: 220000,
+    examPrice: 150000,
+    duration: "40h",
+    description: "Maîtrisez la sécurité des réseaux avec les solutions Fortinet."
+
+  },
+  {
+    id: "cissp",
+    name: "CISSP - Certified Information Systems Security Professional",
+    provider: "ISC²", 
+    category: "Sécurité",
+    trainingPrice: 500000,
+    examPrice: 700000,
+    duration: "5 Jours",
+    description: "La certification de sécurité la plus reconnue au monde pour les professionnels expérimentés."
+  },
+  {
+    id:"ccie-security",
+    name: "Cisco CCIE Security",
+    provider: "Cisco",
+    category: "Sécurité",
+    trainingPrice: 600000,
+    examPrice: 160000,
+    duration: "50h",
+    description: "Devenez un expert en sécurité des réseaux avec la certification CCIE Security."
+  },
   // MANAGEMENT
   {
     id: "pmp",
@@ -121,11 +172,46 @@ export const CERTIFICATIONS_DATA = [
     examPrice: 405000,
     duration: "35h",
     description: "La certification n°1 mondiale pour les chefs de projet."
-  }
+  },
+  // CLOUD
+  {
+    id: "azure-fundamentals",
+    name: "Microsoft Azure Fundamentals",
+    provider: "Microsoft",
+    category: "Cloud",
+    trainingPrice: 100000,
+    examPrice: 165000,
+    duration: "20h",
+    description: "Les bases du cloud computing avec Microsoft Azure."
+  },
+  // GESTION DES SERVICES
+  {
+    id: "itil-4",
+    name: "ITIL 4 Foundation",
+    provider: "AXELOS",
+    category: "Gestion des services",
+    trainingPrice: 120000,
+    examPrice: 200000,
+    duration: "16h",
+    description: "Les meilleures pratiques pour la gestion efficace des services IT."
+  },
+  // BASES DE DONNÉES
+  { 
+    id: "oca",
+    name: "Oracle OCA",
+    provider: "Oracle",
+    category: "Bases de données",
+    trainingPrice: 180000,
+    examPrice: 245000,
+    duration: "40h",
+    description: "La certification d'entrée pour les administrateurs de bases de données Oracle."
+  },
+  // BUREAUTIQUE
+  
 ];
 
 // Liste des catégories pour les filtres
-export const CATEGORIES = ["Tous", "Réseaux", "Sécurité", "Management", "Cloud"];
+export const CATEGORIES = ["Tous", "Réseaux", "Sécurité", "Management", "Cloud", "Gestion des services", "Bases de données", "Bureautique"];
 
 export const COLORS = {
   primary: '#0056b3',
