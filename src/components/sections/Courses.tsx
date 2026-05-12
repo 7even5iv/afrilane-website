@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from "framer-motion";
-
+import { Link } from "react-router-dom"; // 1. Import de Link
 import CourseCard from "../ui/CourseCard";
 import { COURSES } from "../../constants";
 
@@ -14,7 +14,6 @@ const Courses = () => {
 
             {/* Blur Effects */}
             <div className="absolute top-0 left-0 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-
             <div className="absolute bottom-0 right-0 w-72 h-72 bg-cyan-500/10 rounded-full blur-3xl" />
 
             {/* Grid Overlay */}
@@ -24,23 +23,14 @@ const Courses = () => {
 
                 {/* Header */}
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: 30
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        y: 0
-                    }}
-                    transition={{
-                        duration: 0.7
-                    }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7 }}
                     viewport={{ once: true }}
                     className="flex flex-col lg:flex-row lg:items-end lg:justify-between gap-8 mb-20"
                 >
 
                     <div className="max-w-2xl">
-
                         <p className="text-sm font-bold text-afrilane-blue uppercase tracking-[0.35em] mb-4">
                             Nos Programmes
                         </p>
@@ -58,46 +48,38 @@ const Courses = () => {
                             grâce à des programmes orientés pratique,
                             certifications internationales et projets réels.
                         </p>
-
                     </div>
 
-                    {/* CTA */}
-                    <motion.button
-                        whileHover={{
-                            scale: 1.04,
-                            y: -2
-                        }}
-                        whileTap={{
-                            scale: 0.97
-                        }}
-                        className="group relative overflow-hidden self-start lg:self-auto bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl"
-                    >
+                    {/* CTA - LIEN AJOUTÉ ICI */}
+                    <Link to="/certifications" className="self-start lg:self-auto">
+                        <motion.div
+                            whileHover={{
+                                scale: 1.04,
+                                y: -2
+                            }}
+                            whileTap={{
+                                scale: 0.97
+                            }}
+                            className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-4 rounded-2xl font-semibold shadow-xl cursor-pointer"
+                        >
+                            {/* Hover Effect */}
+                            <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
 
-                        {/* Hover Effect */}
-                        <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
-
-                        <span className="relative flex items-center gap-2">
-                            Voir tout le catalogue
-                        </span>
-
-                    </motion.button>
+                            <span className="relative flex items-center gap-2">
+                                Voir tout le catalogue
+                            </span>
+                        </motion.div>
+                    </Link>
 
                 </motion.div>
 
                 {/* Courses Grid */}
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
-
                     {COURSES.map((course, index) => (
                         <motion.div
                             key={course.id}
-                            initial={{
-                                opacity: 0,
-                                y: 40
-                            }}
-                            whileInView={{
-                                opacity: 1,
-                                y: 0
-                            }}
+                            initial={{ opacity: 0, y: 40 }}
+                            whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{
                                 duration: 0.6,
@@ -107,72 +89,38 @@ const Courses = () => {
                                 y: -8
                             }}
                         >
-
                             <CourseCard {...course} />
-
                         </motion.div>
                     ))}
-
                 </div>
 
                 {/* Bottom Stats */}
                 <motion.div
-                    initial={{
-                        opacity: 0,
-                        y: 30
-                    }}
-                    whileInView={{
-                        opacity: 1,
-                        y: 0
-                    }}
-                    transition={{
-                        duration: 0.7,
-                        delay: 0.2
-                    }}
+                    initial={{ opacity: 0, y: 30 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.7, delay: 0.2 }}
                     viewport={{ once: true }}
                     className="mt-24"
                 >
-
                     <div className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-blue-600 to-blue-700 p-10 md:p-14 shadow-2xl">
-
                         {/* Glow */}
                         <div className="absolute top-0 right-0 w-72 h-72 bg-white/10 rounded-full blur-3xl" />
 
                         <div className="relative grid grid-cols-1 md:grid-cols-3 gap-10 text-white">
-
                             <div>
-                                <h3 className="text-5xl font-black mb-2">
-                                    500+
-                                </h3>
-
-                                <p className="text-blue-100 font-medium">
-                                    Professionnels formés
-                                </p>
+                                <h3 className="text-5xl font-black mb-2">500+</h3>
+                                <p className="text-blue-100 font-medium">Professionnels formés</p>
                             </div>
-
                             <div>
-                                <h3 className="text-5xl font-black mb-2">
-                                    95%
-                                </h3>
-
-                                <p className="text-blue-100 font-medium">
-                                    Taux de satisfaction
-                                </p>
+                                <h3 className="text-5xl font-black mb-2">95%</h3>
+                                <p className="text-blue-100 font-medium">Taux de satisfaction</p>
                             </div>
-
                             <div>
-                                <h3 className="text-5xl font-black mb-2">
-                                    20+
-                                </h3>
-
-                                <p className="text-blue-100 font-medium">
-                                    Certifications internationales
-                                </p>
+                                <h3 className="text-5xl font-black mb-2">20+</h3>
+                                <p className="text-blue-100 font-medium">Certifications internationales</p>
                             </div>
-
                         </div>
                     </div>
-
                 </motion.div>
             </div>
         </section>
