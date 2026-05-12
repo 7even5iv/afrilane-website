@@ -47,31 +47,24 @@ export const COURSES = [
 export const TESTIMONIALS = [
   {
     id: 1,
-    name: "Samuel Ewane",
-    role: "Ingénieur Réseaux",
-    company: "Multinationale Télécom",
-    content: "Grâce à la formation CCNA chez Afrilane, j'ai non seulement obtenu ma certification du premier coup, mais j'ai aussi acquis des compétences pratiques directement applicables en entreprise.",
+    name: "Jean-Paul Nogué",
+    role: "Ingénieur Réseau",
+    company: "SNH",
+    content: "Grâce à l'accompagnement d'AFRILANE, j'ai obtenu ma certification CCNA du premier coup.",
     stars: 5,
-    cert: "Cisco CCNA"
+    cert: "CCNA",
+    avatar: "JP" // <--- Assure-toi que cette ligne existe pour chaque témoignage
   },
   {
     id: 2,
-    name: "Marie-Claire Ngo",
-    role: "Chef de Projet IT",
-    company: "Secteur Bancaire",
-    content: "Le centre d'examen est très professionnel. L'accompagnement pour ma certification PMP a été impeccable du début à la fin. Je recommande vivement Afrilane.",
+    name: "Sandrine Eboa",
+    role: "Chef de Projet",
+    company: "Port Autonome",
+    content: "Le cursus PMP est intense mais extrêmement structuré. Un cadre idéal pour réussir.",
     stars: 5,
-    cert: "PMP Certification"
+    cert: "PMP",
+    avatar: "SE"
   },
-  {
-    id: 3,
-    name: "Jean-Paul Ndono",
-    role: "Consultant Cybersécurité",
-    company: "Freelance",
-    content: "Une expertise technique rare au Cameroun. Les formateurs sont des passionnés qui maîtrisent leur sujet. L'audit réalisé pour mon client était d'une précision chirurgicale.",
-    stars: 5,
-    cert: "ISO 27001 Lead Implementer"
-  }
 ];
 
 export const COLORS = {
