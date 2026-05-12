@@ -2,9 +2,11 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CERTIFICATIONS_DATA, CATEGORIES } from "../constants";
 import { FaAward, FaHistory, FaCheckCircle, FaUserPlus, FaInfoCircle } from "react-icons/fa";
+import QuoteModal from "../components/ui/QuoteModal"; // On réutilise la modale pour l'inscription
 
 const Certifications = () => {
     const [activeCategory, setActiveCategory] = useState("Tous");
+    const [isModalOpen, setIsModalOpen] = useState(false);
 
     const filteredCerts = activeCategory === "Tous"
         ? CERTIFICATIONS_DATA
@@ -23,7 +25,7 @@ const Certifications = () => {
                     >
                         Nos <span className="text-blue-600">Certifications</span>
                     </motion.h1>
-                    <p className="text-gray-500 max-w-2xl mx-auto text-lg">
+                    <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
                         Sélectionnez votre domaine d'expertise et boostez votre carrière avec nos titres agréés mondialement.
                     </p>
                 </div>
@@ -36,7 +38,7 @@ const Certifications = () => {
                             onClick={() => setActiveCategory(cat)}
                             className={`px-8 py-3 rounded-full font-bold transition-all duration-300 ${activeCategory === cat
                                 ? "bg-blue-600 text-white shadow-xl shadow-blue-200 scale-105"
-                                : "bg-white text-gray-500 hover:bg-gray-100"
+                                : "bg-white text-gray-500 hover:bg-gray-100 hover:shadow-md"
                                 }`}
                         >
                             {cat}
@@ -57,46 +59,47 @@ const Certifications = () => {
                                 transition={{ duration: 0.3 }}
                                 className="relative bg-white rounded-[2.5rem] overflow-hidden shadow-xl shadow-blue-900/5 hover:shadow-2xl transition-all group border border-gray-100"
                             >
-                                {/* IMAGE DE FOND AVEC OVERLAY */}
+                                {/* IMAGE DE FOND - VISIBILITÉ AMÉLIORÉE (40%) */}
                                 <div className="absolute inset-0 z-0">
                                     <img
                                         src={cert.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000"}
                                         alt=""
-                                        className="w-full h-full object-cover opacity-10 group-hover:opacity-20 transition-opacity duration-500"
+                                        className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity duration-700"
                                     />
-                                    <div className="absolute inset-0 bg-gradient-to-br from-white via-white/95 to-white/80" />
+                                    {/* Dégradé intelligent : Transparent en haut pour voir l'image, blanc en bas pour le texte */}
+                                    <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
                                 </div>
 
-                                {/* CONTENU (Z-10 pour être au dessus de l'image) */}
+                                {/* CONTENU */}
                                 <div className="relative z-10 p-8 flex flex-col h-full">
                                     <div className="flex justify-between items-start mb-6">
-                                        <div className="bg-blue-600 text-white p-4 rounded-2xl shadow-lg shadow-blue-200">
+                                        <div className="bg-blue-600 text-white p-4 rounded-2xl shadow-lg shadow-blue-200 group-hover:scale-110 transition-transform duration-500">
                                             <FaAward size={24} />
                                         </div>
-                                        <span className="text-[10px] font-black bg-blue-50 text-blue-600 px-3 py-1 rounded-full uppercase tracking-widest border border-blue-100">
+                                        <span className="text-[10px] font-black bg-white/60 backdrop-blur-md text-blue-600 px-4 py-2 rounded-full uppercase tracking-widest border border-white shadow-sm">
                                             {cert.provider}
                                         </span>
                                     </div>
 
-                                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors">
+                                    <h3 className="text-2xl font-bold text-slate-900 mb-4 group-hover:text-blue-600 transition-colors drop-shadow-sm">
                                         {cert.name}
                                     </h3>
 
-                                    <p className="text-gray-600 text-sm mb-8 leading-relaxed line-clamp-3">
+                                    <p className="text-slate-700 text-sm mb-8 leading-relaxed line-clamp-3 font-medium">
                                         {cert.description}
                                     </p>
 
-                                    <div className="flex items-center gap-4 mb-8 text-xs font-bold text-gray-500">
-                                        <span className="flex items-center gap-1.5 bg-gray-100 px-3 py-1.5 rounded-lg">
+                                    <div className="flex items-center gap-3 mb-8">
+                                        <span className="flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-gray-100 text-gray-600 text-xs font-bold px-3 py-1.5 rounded-lg">
                                             <FaHistory className="text-blue-500" /> {cert.duration}
                                         </span>
-                                        <span className="flex items-center gap-1.5 bg-gray-100 px-3 py-1.5 rounded-lg">
+                                        <span className="flex items-center gap-1.5 bg-white/80 backdrop-blur-sm border border-gray-100 text-gray-600 text-xs font-bold px-3 py-1.5 rounded-lg">
                                             <FaCheckCircle className="text-blue-500" /> {cert.category}
                                         </span>
                                     </div>
 
-                                    {/* FOOTER CARTE : PRIX & BOUTONS */}
-                                    <div className="pt-6 border-t border-gray-100 mt-auto">
+                                    {/* FOOTER CARTE */}
+                                    <div className="pt-6 border-t border-gray-200/50 mt-auto">
                                         <div className="flex items-center justify-between mb-6">
                                             <div>
                                                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-tight">Tarif formation</span>
@@ -107,10 +110,13 @@ const Certifications = () => {
                                         </div>
 
                                         <div className="grid grid-cols-2 gap-3">
-                                            <button className="flex items-center justify-center gap-2 bg-slate-900 text-white px-4 py-3 rounded-xl font-bold text-sm hover:bg-slate-800 transition-all">
+                                            <button className="flex items-center justify-center gap-2 bg-slate-100 text-slate-700 px-4 py-3.5 rounded-xl font-bold text-sm hover:bg-slate-200 transition-all border border-slate-200">
                                                 <FaInfoCircle size={14} /> Détails
                                             </button>
-                                            <button className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-3 rounded-xl font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all">
+                                            <button
+                                                onClick={() => setIsModalOpen(true)}
+                                                className="flex items-center justify-center gap-2 bg-blue-600 text-white px-4 py-3.5 rounded-xl font-bold text-sm hover:bg-blue-700 shadow-lg shadow-blue-200 transition-all active:scale-95"
+                                            >
                                                 <FaUserPlus size={14} /> S'inscrire
                                             </button>
                                         </div>
@@ -122,6 +128,9 @@ const Certifications = () => {
                 </motion.div>
 
             </div>
+
+            {/* MODALE D'INSCRIPTION */}
+            <QuoteModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
         </div>
     );
 };
