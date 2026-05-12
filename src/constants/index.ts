@@ -85,8 +85,8 @@ export const CERTIFICATIONS_DATA = [
     name: "Cisco CCNA 200-301",
     provider: "Cisco",
     category: "Réseaux",
-    trainingPrice: 150000,
-    examPrice: 215000,
+    trainingPrice: 250000,
+    examPrice: 190000,
     duration: "40h",
     description: "Installation, configuration et dépannage des réseaux d'entreprise."
   },
@@ -96,7 +96,7 @@ export const CERTIFICATIONS_DATA = [
     provider: "Cisco",
     category: "Réseaux",
     trainingPrice: 250000,
-    examPrice: 300000,
+    examPrice: 250000,
     duration: "35h",
     description: "Conception et gestion avancée des réseaux d'entreprise."
   },
@@ -117,7 +117,7 @@ export const CERTIFICATIONS_DATA = [
     provider: "PECB",
     category: "Sécurité",
     trainingPrice: 450000,
-    examPrice: 0, 
+    examPrice: 75000, 
     duration: "5 Jours",
     description: "Devenez expert en mise en œuvre de systèmes de management de la sécurité."
   },
@@ -158,7 +158,7 @@ export const CERTIFICATIONS_DATA = [
     provider: "Cisco",
     category: "Sécurité",
     trainingPrice: 600000,
-    examPrice: 160000,
+    examPrice: 1.000000,
     duration: "50h",
     description: "Devenez un expert en sécurité des réseaux avec la certification CCIE Security."
   },
@@ -206,7 +206,27 @@ export const CERTIFICATIONS_DATA = [
     duration: "40h",
     description: "La certification d'entrée pour les administrateurs de bases de données Oracle."
   },
+  {
+    id: "mcsa-sql",
+    name: "Microsoft MCSA SQL Server",
+    provider: "Microsoft",
+    category: "Bases de données",
+    trainingPrice: 200000,
+    examPrice: 300000,
+    duration: "40h",
+    description: "La certification pour les administrateurs de bases de données SQL Server."
+  },
   // BUREAUTIQUE
+  {
+    id: "mos-specialist",
+    name: "Microsoft Office Specialist (MOS)",
+    provider: "Microsoft",
+    category: "Bureautique",
+    trainingPrice: 80000,
+    examPrice: 100000,
+    duration: "20h",
+    description: "La certification pour maîtriser les outils Microsoft Office."
+  }
   
 ];
 
