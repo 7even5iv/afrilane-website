@@ -20,7 +20,7 @@ const ClientCard = ({ name, logo, industry }: ClientCardProps) => {
                     <img
                         src={logo}
                         alt={name}
-                        className="max-h-full max-w-[90%] object-contain filter grayscale md:grayscale md:group-hover:grayscale-0 landscape:grayscale-0 transition-all duration-700"
+                        className="max-h-full max-w-[90%] object-contain filter md:grayscale md:group-hover:grayscale-0 transition-all duration-700"
                         onError={(e) => {
                             (e.target as HTMLImageElement).style.display = 'none';
                             (e.target as HTMLImageElement).nextElementSibling?.classList.remove('hidden');

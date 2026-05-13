@@ -308,27 +308,6 @@ const Header = () => {
                     </>
                 )}
             </AnimatePresence>
-
-            {/* Styles CSS supplémentaires pour le responsive landscape */}
-            <style jsx>{`
-                @media (orientation: landscape) and (max-width: 1024px) {
-                    /* Ajustements supplémentaires si nécessaire */
-                    .landscape\\:max-w-md {
-                        max-width: 28rem;
-                    }
-                }
-                
-                /* Pour les très petits écrans en paysage */
-                @media (orientation: landscape) and (max-height: 480px) {
-                    .landscape\\:p-4 {
-                        padding: 1rem;
-                    }
-                    
-                    .landscape\\:gap-2 {
-                        gap: 0.5rem;
-                    }
-                }
-            `}</style>
         </>
     );
 };
