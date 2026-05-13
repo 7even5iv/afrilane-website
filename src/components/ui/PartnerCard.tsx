@@ -6,11 +6,13 @@ import { FaShieldAlt } from "react-icons/fa";
 interface PartnerCardProps {
   name: string;
   logo: string;
+  orientation?: 'portrait' | 'landscape';
 }
 
 const PartnerCard = ({
   name,
-  logo
+  logo,
+  orientation = 'landscape'
 }: PartnerCardProps) => {
 
   const handleError = (
@@ -29,6 +31,32 @@ const PartnerCard = ({
     }
   };
 
+  // Configuration des dimensions selon l'orientation
+  const getImageDimensions = () => {
+    switch (orientation) {
+      case 'portrait':
+        return {
+          containerClass: "aspect-[3/4]",
+          imageClass: "h-auto w-full max-h-32 object-cover",
+          wrapperClass: "mb-4"
+        };
+      case 'landscape':
+        return {
+          containerClass: "aspect-[4/3]",
+          imageClass: "h-auto w-full object-contain",
+          wrapperClass: "mb-4"
+        };
+      default:
+        return {
+          containerClass: "aspect-square",
+          imageClass: "h-16 object-contain",
+          wrapperClass: ""
+        };
+    }
+  };
+
+  const dimensions = getImageDimensions();
+
   return (
     <motion.div
       whileHover={{
@@ -40,7 +68,7 @@ const PartnerCard = ({
         stiffness: 260,
         damping: 18,
       }}
-      className="
+      className={`
         group
         relative
         overflow-hidden
@@ -52,9 +80,9 @@ const PartnerCard = ({
         hover:shadow-[0_20px_80px_rgba(59,130,246,0.18)]
         transition-all
         duration-700
-        min-h-[190px]
+        ${orientation === 'portrait' ? 'min-h-[280px]' : 'min-h-[190px]'}
         p-8
-      "
+      `}
     >
 
       {/* BACKGROUND GLOW */}
@@ -118,30 +146,38 @@ const PartnerCard = ({
         "
       >
 
-        {/* LOGO */}
-        <motion.img
-          src={logo}
-          alt={`Logo ${name}`}
-          loading="lazy"
-          onError={handleError}
-          whileHover={{
-            scale: 1.08,
-          }}
-          transition={{
-            duration: 0.4,
-          }}
-          className="
-            h-16
-            object-contain
-            transition-all
-            duration-700
-            md:grayscale
-            md:opacity-70
-            md:group-hover:grayscale-0
-            md:group-hover:opacity-100
-            group-hover:scale-110
-          "
-        />
+        {/* LOGO CONTAINER */}
+        <div className={dimensions.wrapperClass}>
+          <motion.div
+            className={`${dimensions.containerClass} flex items-center justify-center`}
+            whileHover={{
+              scale: 1.05,
+            }}
+            transition={{
+              duration: 0.4,
+            }}
+          >
+            <motion.img
+              src={logo}
+              alt={`Logo ${name}`}
+              loading="lazy"
+              onError={handleError}
+              whileHover={{
+                scale: 1.08,
+              }}
+              transition={{
+                duration: 0.4,
+              }}
+              className={`
+                ${dimensions.imageClass}
+                transition-all
+                duration-700
+                /* SUPPRESSION DU GRIS - IMAGES TOUJOURS EN COULEURS */
+                group-hover:scale-110
+              `}
+            />
+          </motion.div>
+        </div>
 
         {/* FALLBACK */}
         <div
