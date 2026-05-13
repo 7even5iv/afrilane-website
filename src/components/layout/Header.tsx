@@ -79,26 +79,26 @@ const Header = () => {
                     initial={{ y: -100, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.6 }}
-                    className="max-w-7xl mx-auto px-4 pt-4"
+                    className="max-w-7xl mx-auto px-2 sm:px-4 pt-2 sm:pt-4"
                 >
                     <div
                         className={`relative rounded-2xl transition-all duration-500 ${isScrolled
-                                ? "bg-white/80 backdrop-blur-2xl border border-white/20 shadow-2xl"
-                                : "bg-white/40 backdrop-blur-xl border border-white/10"
+                            ? "bg-white/80 backdrop-blur-2xl border border-white/20 shadow-2xl"
+                            : "bg-white/40 backdrop-blur-xl border border-white/10"
                             }`}
                     >
                         {/* Glow */}
                         <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-blue-500/5 to-cyan-500/5 pointer-events-none" />
 
                         {/* CONTENT */}
-                        <div className="relative flex items-center justify-between h-20 px-6">
+                        <div className="relative flex items-center justify-between h-16 sm:h-20 px-4 sm:px-6">
 
                             {/* LOGO */}
                             <Link to="/">
                                 <motion.img
                                     src={logo}
                                     alt="Afrilane"
-                                    className="h-11 w-auto"
+                                    className="h-9 sm:h-11 w-auto"
                                     whileHover={{ scale: 1.05 }}
                                     transition={{
                                         type: "spring",
@@ -118,14 +118,14 @@ const Header = () => {
                                             key={item.name}
                                             to={item.href}
                                             className={`relative px-5 py-2 rounded-full font-semibold overflow-hidden transition-all duration-300 group ${isActive
-                                                    ? "text-blue-600"
-                                                    : "text-gray-700 hover:text-blue-600"
+                                                ? "text-blue-600"
+                                                : "text-gray-700 hover:text-blue-600"
                                                 }`}
                                         >
                                             <span
                                                 className={`absolute inset-0 rounded-full transition-transform duration-300 ${isActive
-                                                        ? "bg-blue-100 scale-100"
-                                                        : "bg-blue-50 scale-0 group-hover:scale-100"
+                                                    ? "bg-blue-100 scale-100"
+                                                    : "bg-blue-50 scale-0 group-hover:scale-100"
                                                     }`}
                                             />
 
@@ -165,11 +165,11 @@ const Header = () => {
                                 type="button"
                                 onClick={() => setIsOpen(true)}
                                 whileTap={{ scale: 0.9 }}
-                                className="lg:hidden relative w-11 h-11 rounded-full bg-white/50 backdrop-blur-md border border-white/20 flex flex-col justify-center items-center gap-1.5"
+                                className="lg:hidden relative w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-white/50 backdrop-blur-md border border-white/20 flex flex-col justify-center items-center gap-1.5"
                             >
-                                <span className="w-5 h-0.5 bg-gray-800 rounded-full" />
-                                <span className="w-5 h-0.5 bg-gray-800 rounded-full" />
-                                <span className="w-5 h-0.5 bg-gray-800 rounded-full" />
+                                <span className="w-4 sm:w-5 h-0.5 bg-gray-800 rounded-full" />
+                                <span className="w-4 sm:w-5 h-0.5 bg-gray-800 rounded-full" />
+                                <span className="w-4 sm:w-5 h-0.5 bg-gray-800 rounded-full" />
                             </motion.button>
                         </div>
                     </div>
@@ -189,7 +189,7 @@ const Header = () => {
                             className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60]"
                         />
 
-                        {/* DRAWER */}
+                        {/* DRAWER - RESPONSIVE LANDSCAPE */}
                         <motion.div
                             initial={{ x: "100%" }}
                             animate={{ x: 0 }}
@@ -199,29 +199,29 @@ const Header = () => {
                                 stiffness: 280,
                                 damping: 28,
                             }}
-                            className="fixed top-0 right-0 h-full w-full max-w-sm bg-white/95 backdrop-blur-2xl shadow-2xl z-[70] overflow-hidden"
+                            className="fixed top-0 right-0 h-full w-full max-w-sm bg-white/95 backdrop-blur-2xl shadow-2xl z-[70] overflow-y-auto landscape:max-w-md landscape:w-4/5"
                         >
-                            <div className="flex flex-col h-full p-8">
+                            <div className="flex flex-col h-full p-5 sm:p-8 landscape:p-4">
 
                                 {/* TOP */}
-                                <div className="flex items-center justify-between mb-10">
+                                <div className="flex items-center justify-between mb-6 sm:mb-10 landscape:mb-4">
                                     <img
                                         src={logo}
                                         alt="Afrilane"
-                                        className="h-10"
+                                        className="h-8 sm:h-10 landscape:h-7"
                                     />
 
                                     <button
                                         type="button"
                                         onClick={() => setIsOpen(false)}
-                                        className="w-11 h-11 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
+                                        className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-gray-200 transition-colors flex items-center justify-center"
                                     >
-                                        <FaTimes className="text-gray-700" />
+                                        <FaTimes className="text-gray-700 text-sm sm:text-base" />
                                     </button>
                                 </div>
 
-                                {/* NAVIGATION MOBILE */}
-                                <nav className="flex flex-col gap-3 flex-1">
+                                {/* NAVIGATION MOBILE - RESPONSIVE LANDSCAPE */}
+                                <nav className="flex flex-col gap-2 sm:gap-3 flex-1 landscape:flex-row landscape:flex-wrap landscape:gap-2 landscape:justify-center landscape:content-start">
                                     {menuItems.map((item) => {
                                         const Icon = item.icon;
 
@@ -235,29 +235,29 @@ const Header = () => {
                                                 onClick={() =>
                                                     setIsOpen(false)
                                                 }
-                                                className={`group flex items-center gap-4 p-4 rounded-2xl transition-all ${isActive
-                                                        ? "bg-blue-50"
-                                                        : "hover:bg-blue-50"
+                                                className={`group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl transition-all landscape:flex-col landscape:gap-2 landscape:p-3 landscape:flex-1 landscape:min-w-[100px] ${isActive
+                                                    ? "bg-blue-50"
+                                                    : "hover:bg-blue-50"
                                                     }`}
                                             >
                                                 <div
-                                                    className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${isActive
-                                                            ? "bg-blue-100"
-                                                            : "bg-gray-100 group-hover:bg-blue-100"
+                                                    className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl flex items-center justify-center transition-colors landscape:w-9 landscape:h-9 ${isActive
+                                                        ? "bg-blue-100"
+                                                        : "bg-gray-100 group-hover:bg-blue-100"
                                                         }`}
                                                 >
                                                     <Icon
-                                                        className={`text-lg ${isActive
-                                                                ? "text-blue-600"
-                                                                : "text-gray-700 group-hover:text-blue-600"
+                                                        className={`text-base sm:text-lg landscape:text-sm ${isActive
+                                                            ? "text-blue-600"
+                                                            : "text-gray-700 group-hover:text-blue-600"
                                                             }`}
                                                     />
                                                 </div>
 
                                                 <span
-                                                    className={`text-lg font-semibold ${isActive
-                                                            ? "text-blue-600"
-                                                            : "text-gray-800 group-hover:text-blue-600"
+                                                    className={`text-base sm:text-lg font-semibold landscape:text-sm ${isActive
+                                                        ? "text-blue-600"
+                                                        : "text-gray-800 group-hover:text-blue-600"
                                                         }`}
                                                 >
                                                     {item.name}
@@ -267,39 +267,39 @@ const Header = () => {
                                     })}
                                 </nav>
 
-                                {/* FOOTER MOBILE */}
-                                <div className="pt-8 border-t border-gray-200">
+                                {/* FOOTER MOBILE - RESPONSIVE LANDSCAPE */}
+                                <div className="pt-6 sm:pt-8 border-t border-gray-200 landscape:pt-4">
                                     <Link
                                         to="/contact"
                                         onClick={() => setIsOpen(false)}
                                     >
                                         <button
                                             type="button"
-                                            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-4 rounded-2xl font-semibold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity"
+                                            className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 sm:py-4 rounded-2xl font-semibold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity text-sm sm:text-base landscape:py-2"
                                         >
-                                            <FaPhoneAlt />
+                                            <FaPhoneAlt className="text-sm sm:text-base" />
                                             Contactez-nous
                                         </button>
                                     </Link>
 
                                     {/* SOCIALS */}
-                                    <div className="flex justify-center gap-4 mt-8">
+                                    <div className="flex justify-center gap-4 mt-6 sm:mt-8 landscape:mt-4">
                                         <a
                                             href="https://linkedin.com"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-600 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
+                                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-blue-600 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
                                         >
-                                            <FaLinkedin size={18} />
+                                            <FaLinkedin size={16} className="sm:text-[18px]" />
                                         </a>
 
                                         <a
                                             href="https://facebook.com"
                                             target="_blank"
                                             rel="noopener noreferrer"
-                                            className="w-11 h-11 rounded-full bg-gray-100 hover:bg-blue-700 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
+                                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-blue-700 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
                                         >
-                                            <FaFacebook size={18} />
+                                            <FaFacebook size={16} className="sm:text-[18px]" />
                                         </a>
                                     </div>
                                 </div>
@@ -308,6 +308,27 @@ const Header = () => {
                     </>
                 )}
             </AnimatePresence>
+
+            {/* Styles CSS supplémentaires pour le responsive landscape */}
+            <style jsx>{`
+                @media (orientation: landscape) and (max-width: 1024px) {
+                    /* Ajustements supplémentaires si nécessaire */
+                    .landscape\\:max-w-md {
+                        max-width: 28rem;
+                    }
+                }
+                
+                /* Pour les très petits écrans en paysage */
+                @media (orientation: landscape) and (max-height: 480px) {
+                    .landscape\\:p-4 {
+                        padding: 1rem;
+                    }
+                    
+                    .landscape\\:gap-2 {
+                        gap: 0.5rem;
+                    }
+                }
+            `}</style>
         </>
     );
 };
