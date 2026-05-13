@@ -4,8 +4,10 @@ export const NAVIGATION_LINKS = [
   { name: 'Certifications', href: '/certifications' },
   { name: 'Services', href: '/services' },
   { name: 'À propos', href: '/a-propos' },
+   { name: "Blog", href: "/blog" },
 ];
 
+//
 export const PARTNERS = [
   { name: 'CISCO', logo: '/logos/cisco.png' },
   { name: 'PECB', logo: '/logos/pecb.png' },
@@ -13,7 +15,7 @@ export const PARTNERS = [
   { name: 'MICROSOFT', logo: '/logos/microsoft.png' },
   { name: 'Pearson|Vue', logo: '/logos/pearson-vue.png' },
 ];
-
+// CARTES CERTIFICATIONS
 export const COURSES = [
   {
     id: 1,
@@ -307,3 +309,33 @@ export const COLORS = {
   secondary: '#f4f4f4',
   text: '#333333',
 };
+// BLOG
+export const BLOG_POSTS = [
+  {
+    id: 1,
+    title: "Pourquoi passer sa certification Cisco en 2024 ?",
+    excerpt: "Le marché de l'emploi IT au Cameroun est en pleine mutation. Découvrez pourquoi le CCNA reste le sésame...",
+    date: "12 Mai 2024",
+    category: "Conseils Carrière",
+    author: "Expert Afrilane",
+    image: "https://images.unsplash.com/photo-1558494949-ef010cbdcc51?q=80&w=1000"
+  },
+  {
+    id: 2,
+    title: "Sécurité des SI : Les 5 failles les plus courantes",
+    excerpt: "Audit de sécurité : comment protéger les données de votre entreprise contre les cyberattaques locales...",
+    date: "08 Mai 2024",
+    category: "Cybersécurité",
+    author: "Ingénieur Sécurité",
+    image: "https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=1000"
+  },
+  {
+    id: 3,
+    title: "Lancement de la rentrée académique NOV 2025",
+    excerpt: "Découvrez les nouvelles modalités d'inscription pour nos cursus de Secrétariat et Maintenance...",
+    date: "01 Mai 2024",
+    category: "Actualités",
+    author: "Admin",
+    image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1000"
+  }
+];

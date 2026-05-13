@@ -15,6 +15,7 @@ import Services from './pages/Services';
 import Certifications from './pages/Certifications';
 import About from './pages/About';
 import Formations from './pages/Formations';
+import Blog from './pages/Blog';
 
 // UI Components
 import LoadingScreen from './components/ui/LoadingScreen';
@@ -59,6 +60,7 @@ function App() {
                 <Route path="/certifications" element={<Certifications />} />
                 <Route path="/a-propos" element={<About />} />
                 <Route path="/formations" element={<Formations />} />
+                <Route path="/blog" element={<Blog />} />
                 {/* On pourra ajouter /formations, /services, etc. ici plus tard */}
               </Routes>
             </main>

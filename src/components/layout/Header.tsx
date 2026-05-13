@@ -12,6 +12,7 @@ import {
     FaPhoneAlt,
     FaLinkedin,
     FaFacebook,
+    FaNewspaper, // Importation de l'icône pour le Blog
 } from "react-icons/fa";
 
 import logo from "../../assets/logo.png";
@@ -65,6 +66,11 @@ const Header = () => {
             icon: FaConciergeBell,
         },
         {
+            name: "Blog", // Ajout du Blog
+            href: "/blog",
+            icon: FaNewspaper,
+        },
+        {
             name: "À propos",
             href: "/a-propos",
             icon: FaInfoCircle,
@@ -108,7 +114,7 @@ const Header = () => {
                             </Link>
 
                             {/* NAVIGATION DESKTOP */}
-                            <nav className="hidden lg:flex items-center gap-2">
+                            <nav className="hidden lg:flex items-center gap-1 xl:gap-2">
                                 {menuItems.map((item) => {
                                     const isActive =
                                         location.pathname === item.href;
@@ -117,7 +123,7 @@ const Header = () => {
                                         <Link
                                             key={item.name}
                                             to={item.href}
-                                            className={`relative px-5 py-2 rounded-full font-semibold overflow-hidden transition-all duration-300 group ${isActive
+                                            className={`relative px-4 xl:px-5 py-2 rounded-full font-semibold overflow-hidden transition-all duration-300 group ${isActive
                                                 ? "text-blue-600"
                                                 : "text-gray-700 hover:text-blue-600"
                                                 }`}
@@ -129,7 +135,7 @@ const Header = () => {
                                                     }`}
                                             />
 
-                                            <span className="relative z-10">
+                                            <span className="relative z-10 text-sm xl:text-base">
                                                 {item.name}
                                             </span>
                                         </Link>
@@ -148,11 +154,11 @@ const Header = () => {
                                         whileTap={{
                                             scale: 0.97,
                                         }}
-                                        className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 text-white px-6 py-3 rounded-full font-semibold shadow-lg cursor-pointer"
+                                        className="group relative overflow-hidden bg-gradient-to-r from-blue-600 to-blue-700 text-white px-5 xl:px-6 py-3 rounded-full font-semibold shadow-lg cursor-pointer"
                                     >
                                         <span className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
 
-                                        <span className="relative flex items-center gap-2">
+                                        <span className="relative flex items-center gap-2 text-sm xl:text-base">
                                             <FaPhoneAlt />
                                             Contactez-nous
                                         </span>
@@ -180,7 +186,6 @@ const Header = () => {
             <AnimatePresence>
                 {isOpen && (
                     <>
-                        {/* OVERLAY */}
                         <motion.div
                             initial={{ opacity: 0 }}
                             animate={{ opacity: 1 }}
@@ -189,7 +194,6 @@ const Header = () => {
                             className="fixed inset-0 bg-black/60 backdrop-blur-md z-[60]"
                         />
 
-                        {/* DRAWER - RESPONSIVE LANDSCAPE */}
                         <motion.div
                             initial={{ x: "100%" }}
                             animate={{ x: 0 }}
@@ -203,7 +207,6 @@ const Header = () => {
                         >
                             <div className="flex flex-col h-full p-5 sm:p-8 landscape:p-4">
 
-                                {/* TOP */}
                                 <div className="flex items-center justify-between mb-6 sm:mb-10 landscape:mb-4">
                                     <img
                                         src={logo}
@@ -220,21 +223,16 @@ const Header = () => {
                                     </button>
                                 </div>
 
-                                {/* NAVIGATION MOBILE - RESPONSIVE LANDSCAPE */}
                                 <nav className="flex flex-col gap-2 sm:gap-3 flex-1 landscape:flex-row landscape:flex-wrap landscape:gap-2 landscape:justify-center landscape:content-start">
                                     {menuItems.map((item) => {
                                         const Icon = item.icon;
-
-                                        const isActive =
-                                            location.pathname === item.href;
+                                        const isActive = location.pathname === item.href;
 
                                         return (
                                             <Link
                                                 key={item.name}
                                                 to={item.href}
-                                                onClick={() =>
-                                                    setIsOpen(false)
-                                                }
+                                                onClick={() => setIsOpen(false)}
                                                 className={`group flex items-center gap-3 sm:gap-4 p-3 sm:p-4 rounded-2xl transition-all landscape:flex-col landscape:gap-2 landscape:p-3 landscape:flex-1 landscape:min-w-[100px] ${isActive
                                                     ? "bg-blue-50"
                                                     : "hover:bg-blue-50"
@@ -267,12 +265,8 @@ const Header = () => {
                                     })}
                                 </nav>
 
-                                {/* FOOTER MOBILE - RESPONSIVE LANDSCAPE */}
                                 <div className="pt-6 sm:pt-8 border-t border-gray-200 landscape:pt-4">
-                                    <Link
-                                        to="/contact"
-                                        onClick={() => setIsOpen(false)}
-                                    >
+                                    <Link to="/contact" onClick={() => setIsOpen(false)}>
                                         <button
                                             type="button"
                                             className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-3 sm:py-4 rounded-2xl font-semibold shadow-lg flex items-center justify-center gap-2 hover:opacity-90 transition-opacity text-sm sm:text-base landscape:py-2"
@@ -282,24 +276,12 @@ const Header = () => {
                                         </button>
                                     </Link>
 
-                                    {/* SOCIALS */}
                                     <div className="flex justify-center gap-4 mt-6 sm:mt-8 landscape:mt-4">
-                                        <a
-                                            href="https://linkedin.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-blue-600 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
-                                        >
-                                            <FaLinkedin size={16} className="sm:text-[18px]" />
+                                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-blue-600 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300">
+                                            <FaLinkedin size={16} />
                                         </a>
-
-                                        <a
-                                            href="https://facebook.com"
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-blue-700 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300"
-                                        >
-                                            <FaFacebook size={16} className="sm:text-[18px]" />
+                                        <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-gray-100 hover:bg-blue-700 text-gray-700 hover:text-white flex items-center justify-center transition-all duration-300">
+                                            <FaFacebook size={16} />
                                         </a>
                                     </div>
                                 </div>
