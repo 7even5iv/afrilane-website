@@ -8,27 +8,25 @@ import {
     FaUserPlus,
     FaInfoCircle,
     FaStar,
-    // FaChartLine - Supprimé car non utilisé
 } from "react-icons/fa";
 import QuoteModal from "../components/ui/QuoteModal";
 
-// Définir le type pour une certification
-interface Certification {
-    id: string;
-    name: string;
-    provider: string;
-    category: string;
-    trainingPrice: number;
-    examPrice: number;
-    duration: string;
-    description: string;
-    image?: string;
-}
+// Supprimer l'interface Certification car elle n'est pas utilisée
+// interface Certification {
+//     id: string;
+//     name: string;
+//     provider: string;
+//     category: string;
+//     trainingPrice: number;
+//     examPrice: number;
+//     duration: string;
+//     description: string;
+//     image?: string;
+// }
 
 const Certifications = () => {
     const [activeCategory, setActiveCategory] = useState("Tous");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
     const filteredCerts =
         activeCategory === "Tous"
@@ -193,7 +191,10 @@ const Certifications = () => {
                                     {/* Actions */}
                                     <div className="grid grid-cols-2 gap-3 mt-auto">
                                         <button
-                                            onClick={() => setSelectedCert(cert)}
+                                            onClick={() => {
+                                                // Logique pour les détails
+                                                console.log("Détails de la certification:", cert);
+                                            }}
                                             className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:border-gray-300"
                                         >
                                             <FaInfoCircle size={14} />
@@ -230,15 +231,10 @@ const Certifications = () => {
                 )}
             </div>
 
-            {/* MODAL avec certification sélectionnée - Correction : passer seulement les props attendues par QuoteModal */}
+            {/* MODAL */}
             <QuoteModal
                 isOpen={isModalOpen}
-                onClose={() => {
-                    setIsModalOpen(false);
-                    setSelectedCert(null);
-                }}
-            // Si votre QuoteModal accepte une prop 'certification', décommentez la ligne suivante
-            // certification={selectedCert}
+                onClose={() => setIsModalOpen(false)}
             />
         </div>
     );
