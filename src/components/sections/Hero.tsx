@@ -1,140 +1,134 @@
 import { motion } from "framer-motion";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom"; // 1. Import de Link
+import { Link } from "react-router-dom";
 import {
-  FaGraduationCap,
-  FaRocket,
-  FaTrophy,
-  FaChevronDown,
+  FaArrowRight,
+  FaCheckCircle,
   FaUsers,
-  FaCheckCircle
+  FaStar,
+  FaShieldAlt,
+  FaPlay,
 } from "react-icons/fa";
 
 const Hero = () => {
-  const [isVisible, setIsVisible] = useState(false);
-
-  useEffect(() => {
-    setIsVisible(true);
-  }, []);
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15 },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 25 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { type: "spring" as const, stiffness: 90, damping: 14 },
-    },
-  };
-
-  const imageVariants = {
-    hidden: { opacity: 0, scale: 0.95 },
-    visible: {
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.6 },
-    },
-  };
-
   return (
-    <section className="relative bg-gradient-to-br from-white via-gray-50 to-blue-50 pt-16 pb-40 lg:pt-24 lg:pb-44 overflow-hidden">
+    <section className="relative overflow-hidden bg-[#020617] text-white min-h-screen flex items-center">
 
-      {/* Background blobs */}
-      <motion.div
-        className="absolute top-0 left-0 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-20"
-        animate={{ x: [0, 60, 0], y: [0, 40, 0] }}
-        transition={{ duration: 25, repeat: Infinity }}
-      />
-      <motion.div
-        className="absolute bottom-0 right-0 w-96 h-96 bg-purple-200 rounded-full blur-3xl opacity-20"
-        animate={{ x: [0, -60, 0], y: [0, -40, 0] }}
-        transition={{ duration: 25, repeat: Infinity }}
-      />
+      {/* BACKGROUND */}
+      <div className="absolute inset-0">
+        <div className="absolute top-0 left-0 w-[500px] h-[500px] bg-blue-600/20 blur-3xl rounded-full" />
+        <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-cyan-500/20 blur-3xl rounded-full" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <motion.div
-          className="lg:grid lg:grid-cols-2 lg:gap-12 items-center"
-          variants={containerVariants}
-          initial="hidden"
-          animate={isVisible ? "visible" : "hidden"}
-        >
+        {/* GRID */}
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:70px_70px]" />
+      </div>
+
+      <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 lg:py-32 w-full">
+
+        <div className="grid lg:grid-cols-2 gap-16 items-center">
 
           {/* LEFT */}
-          <motion.div variants={itemVariants}>
-            <h1 className="text-4xl font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
-              <span className="block">Propulse ta</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-800">
-                carrière IT
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+          >
+
+            {/* BADGE */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-8">
+              <FaShieldAlt className="text-cyan-400" />
+              <span className="text-sm text-gray-300">
+                Centre de formation IT certifié
               </span>
+            </div>
+
+            {/* TITLE */}
+            <h1 className="text-5xl md:text-6xl xl:text-7xl font-black leading-tight">
+              Deviens un
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
+                expert IT
+              </span>
+              recherché partout.
             </h1>
 
-            <p className="mt-6 text-lg text-gray-600 max-w-lg leading-relaxed">
-              Obtiens des certifications IT internationales et décroche des opportunités concrètes au Cameroun.
+            {/* DESCRIPTION */}
+            <p className="mt-8 text-lg text-gray-400 leading-relaxed max-w-xl">
+              Formations et certifications internationales pour booster ta
+              carrière dans la cybersécurité, le cloud, le réseau et le
+              management IT.
             </p>
 
-            <div className="mt-4 flex gap-2 flex-wrap">
-              {["Cisco", "CompTIA", "Microsoft", "PMP"].map((cert, i) => (
-                <span
-                  key={i}
-                  className="text-xs bg-blue-100 text-blue-700 px-3 py-1 rounded-full font-semibold"
+            {/* CERTIFICATIONS */}
+            <div className="mt-6 flex flex-wrap gap-3">
+              {["Cisco", "Microsoft", "AWS", "CompTIA", "PMP"].map((item) => (
+                <div
+                  key={item}
+                  className="px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-300"
                 >
-                  {cert}
-                </span>
+                  {item}
+                </div>
               ))}
             </div>
 
+            {/* BUTTONS */}
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              {/* LIEN VERS LES CERTIFICATIONS */}
-              <Link to="/certifications" className="w-full sm:w-auto">
+
+              <Link to="/certifications">
                 <motion.button
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full text-white font-bold bg-gradient-to-r from-blue-600 to-blue-700 shadow-lg"
-                  whileHover={{ scale: 1.05, y: -3 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="group px-8 py-4 rounded-2xl bg-gradient-to-r from-cyan-500 to-blue-600 font-semibold flex items-center gap-3 shadow-2xl shadow-cyan-500/20"
                 >
-                  <FaGraduationCap />
-                  Commencer ma certification
+                  Commencer maintenant
+                  <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
                 </motion.button>
               </Link>
 
-              {/* LIEN VERS LES SERVICES (CORRECTIF ICI) */}
-              <Link to="/expertise" className="w-full sm:w-auto">
+              <Link to="/expertise">
                 <motion.button
-                  className="w-full inline-flex items-center justify-center gap-2 px-8 py-3 rounded-full border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-colors"
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
+                  className="px-8 py-4 rounded-2xl border border-white/10 bg-white/5 backdrop-blur-md flex items-center gap-3 hover:bg-white/10 transition"
                 >
-                  <FaRocket />
-                  Voir les services
+                  <FaPlay />
+                  Explorer les services
                 </motion.button>
               </Link>
             </div>
 
-            <div className="mt-8 flex items-center gap-3 text-sm text-gray-500">
-              <span className="flex -space-x-2">
-                {[1, 2, 3].map((i) => (
-                  <div
-                    key={i}
-                    className="h-8 w-8 rounded-full bg-gray-300 border-2 border-white flex items-center justify-center"
-                  >
-                    <FaCheckCircle className="text-white text-xs" />
-                  </div>
-                ))}
-              </span>
+            {/* TRUST */}
+            <div className="mt-10 flex flex-wrap items-center gap-6">
 
-              <div className="flex items-center gap-2">
-                <FaUsers className="text-blue-500" />
-                <p>
-                  Déjà{" "}
-                  <span className="text-blue-600 font-bold">
-                    +1000 certifiés accompagnés
-                  </span>
+              <div className="flex items-center gap-3">
+                <div className="flex -space-x-2">
+                  {[1, 2, 3, 4].map((i) => (
+                    <div
+                      key={i}
+                      className="w-10 h-10 rounded-full border-2 border-[#020617] bg-gradient-to-br from-cyan-400 to-blue-600 flex items-center justify-center"
+                    >
+                      <FaUsers className="text-sm" />
+                    </div>
+                  ))}
+                </div>
+
+                <div>
+                  <p className="font-bold text-lg">+1000</p>
+                  <p className="text-sm text-gray-400">
+                    étudiants accompagnés
+                  </p>
+                </div>
+              </div>
+
+              <div className="h-10 w-px bg-white/10" />
+
+              <div>
+                <div className="flex items-center gap-1 text-yellow-400">
+                  {[1, 2, 3, 4, 5].map((i) => (
+                    <FaStar key={i} />
+                  ))}
+                </div>
+
+                <p className="text-sm text-gray-400 mt-1">
+                  4.9/5 satisfaction moyenne
                 </p>
               </div>
             </div>
@@ -142,46 +136,59 @@ const Hero = () => {
 
           {/* RIGHT */}
           <motion.div
-            className="mt-12 lg:mt-0 relative"
-            variants={imageVariants}
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            className="relative"
           >
-            <div className="relative rounded-2xl shadow-2xl overflow-hidden group">
-              <motion.img
-                className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+
+            {/* MAIN IMAGE */}
+            <div className="relative rounded-[32px] overflow-hidden border border-white/10 bg-white/5 backdrop-blur-md shadow-2xl">
+
+              <img
+                src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop"
                 alt="Formation IT"
-                whileHover={{ scale: 1.05 }}
+                className="w-full h-[650px] object-cover"
               />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-600/20 to-purple-600/20" />
+
+              <div className="absolute inset-0 bg-gradient-to-t from-[#020617] via-transparent to-transparent" />
             </div>
 
+            {/* FLOATING CARD */}
             <motion.div
-              className="absolute -bottom-5 -left-5 bg-white rounded-xl shadow-lg p-3 flex items-center gap-3"
-              initial={{ opacity: 0, y: 40 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
+              animate={{ y: [0, -10, 0] }}
+              transition={{ repeat: Infinity, duration: 4 }}
+              className="absolute -left-10 top-10 bg-white text-black p-5 rounded-3xl shadow-2xl w-64"
             >
-              <div className="h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
-                <FaTrophy className="text-yellow-600" />
-              </div>
-              <div>
-                <p className="text-xs text-gray-500">Certifications</p>
-                <p className="font-bold">100% reconnues</p>
+              <p className="text-sm text-gray-500">
+                Certifications obtenues
+              </p>
+
+              <h3 className="text-3xl font-black mt-2">+2,500</h3>
+
+              <div className="mt-4 flex items-center gap-2 text-green-500 font-semibold">
+                <FaCheckCircle />
+                Taux de réussite élevé
               </div>
             </motion.div>
-          </motion.div>
-        </motion.div>
-      </div>
 
-      {/* SCROLL INDICATOR */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center z-30"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 1.5, repeat: Infinity }}
-      >
-        <span className="text-xs text-gray-400">Découvrir</span>
-        <FaChevronDown className="text-gray-400" />
-      </motion.div>
+            {/* SECOND CARD */}
+            <motion.div
+              animate={{ y: [0, 10, 0] }}
+              transition={{ repeat: Infinity, duration: 5 }}
+              className="absolute -right-6 bottom-10 bg-gradient-to-r from-cyan-500 to-blue-600 p-6 rounded-3xl shadow-2xl w-60"
+            >
+              <p className="text-sm text-cyan-100">
+                Opportunités professionnelles
+              </p>
+
+              <h3 className="text-2xl font-black mt-2">
+                Carrière boostée 🚀
+              </h3>
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
     </section>
   );
 };

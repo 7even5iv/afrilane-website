@@ -103,7 +103,8 @@ const PartnerCard = ({
           }}
           className="object-cover transition-all duration-[1.5s] 
           ease-out group-hover:scale-110 
-          md:grayscale md:group-hover:grayscale-0"
+          grayscale md:grayscale md:group-hover:grayscale-0
+          landscape:grayscale-0"
         />
 
         {/* Fallback */}
