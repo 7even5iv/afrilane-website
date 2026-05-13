@@ -64,7 +64,7 @@ const Certifications = () => {
                                     <img
                                         src={cert.image || "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=1000"}
                                         alt=""
-                                        className="w-full h-full object-cover opacity-40 group-hover:opacity-50 transition-opacity duration-700"
+                                        className="w-full h-full object-cover opacity-50 group-hover:opacity-50 transition-opacity duration-700"
                                     />
                                     {/* Dégradé intelligent : Transparent en haut pour voir l'image, blanc en bas pour le texte */}
                                     <div className="absolute inset-0 bg-gradient-to-t from-white via-white/80 to-transparent" />
