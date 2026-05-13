@@ -8,14 +8,27 @@ import {
     FaUserPlus,
     FaInfoCircle,
     FaStar,
-    FaChartLine,
+    // FaChartLine - Supprimé car non utilisé
 } from "react-icons/fa";
 import QuoteModal from "../components/ui/QuoteModal";
+
+// Définir le type pour une certification
+interface Certification {
+    id: string;
+    name: string;
+    provider: string;
+    category: string;
+    trainingPrice: number;
+    examPrice: number;
+    duration: string;
+    description: string;
+    image?: string;
+}
 
 const Certifications = () => {
     const [activeCategory, setActiveCategory] = useState("Tous");
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [selectedCert, setSelectedCert] = useState(null);
+    const [selectedCert, setSelectedCert] = useState<Certification | null>(null);
 
     const filteredCerts =
         activeCategory === "Tous"
@@ -217,11 +230,15 @@ const Certifications = () => {
                 )}
             </div>
 
-            {/* MODAL avec certification sélectionnée */}
+            {/* MODAL avec certification sélectionnée - Correction : passer seulement les props attendues par QuoteModal */}
             <QuoteModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
-                certification={selectedCert}
+                onClose={() => {
+                    setIsModalOpen(false);
+                    setSelectedCert(null);
+                }}
+            // Si votre QuoteModal accepte une prop 'certification', décommentez la ligne suivante
+            // certification={selectedCert}
             />
         </div>
     );

@@ -72,7 +72,7 @@ const CourseCard = ({ title, category, duration, level, description, imageUrl }:
                                 Niveau
                             </span>
                             <div className="flex gap-1">
-                                {['Débutant', 'Intermédiaire', 'Avancé'].map((lvl, idx) => (
+                                {['Débutant', 'Intermédiaire', 'Avancé'].map((lvl) => (
                                     <div
                                         key={lvl}
                                         className={`h-1.5 w-6 rounded-full transition-all duration-300 ${level === lvl
