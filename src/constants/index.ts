@@ -77,7 +77,7 @@ export interface Program {
     examIncluded: boolean;
     description: string;
 }
-
+// CERTIFICATIONS
 export const CERTIFICATIONS_DATA = [
   // RÉSEAUX
   {
@@ -230,6 +230,73 @@ export const CERTIFICATIONS_DATA = [
     description: "La certification pour maîtriser les outils Microsoft Office."
   }
   
+];
+// FORMATIONS
+export const VOCATIONAL_TRAININGS = [
+  {
+    id: "sec-bur",
+    title: "Secrétariat Bureautique",
+    subTitle: "Office Automation Secretaryship",
+    price: 200000,
+    category: "Administration",
+    image: "https://images.unsplash.com/photo-1586281380349-632531db7ed4?q=80&w=1000"
+  },
+  {
+    id: "sec-bil",
+    title: "Secrétariat Bureautique Bilingue",
+    subTitle: "Bilingual Secretaryship",
+    price: 270000,
+    category: "Administration",
+    image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1000"
+  },
+  {
+    id: "sec-comp",
+    title: "Secrétariat Comptable",
+    subTitle: "Accounting Secretaryship",
+    price: 250000,
+    category: "Finance",
+    image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?q=80&w=1000"
+  },
+  {
+    id: "comp-inf",
+    title: "Comptabilité Informatisée et Gestion",
+    subTitle: "Computerized Accounting and Management",
+    price: 270000,
+    category: "Finance",
+    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?q=80&w=1000"
+  },
+  {
+    id: "maint-res",
+    title: "Maintenance Informatique et des Réseaux",
+    subTitle: "Computer and Network Maintenance",
+    price: 270000,
+    category: "IT & Tech",
+    image: "https://images.unsplash.com/photo-1597733336794-12d05021d510?q=80&w=1000"
+  },
+  {
+    id: "graph-prod",
+    title: "Graphisme de Production",
+    subTitle: "Production Graphics Design",
+    price: 270000,
+    category: "Design",
+    image: "https://images.unsplash.com/photo-1626785774573-4b799315345d?q=80&w=1000"
+  },
+  {
+    id: "webmaster",
+    title: "WebMestre",
+    subTitle: "WebMaster",
+    price: 270000,
+    category: "IT & Tech",
+    image: "https://images.unsplash.com/photo-1547658719-da2b51169166?q=80&w=1000"
+  },
+  {
+    id: "dev-app",
+    title: "Développement d'application",
+    subTitle: "Application Development",
+    price: 270000,
+    category: "IT & Tech",
+    image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?q=80&w=1000"
+  }
 ];
 
 // Liste des catégories pour les filtres
