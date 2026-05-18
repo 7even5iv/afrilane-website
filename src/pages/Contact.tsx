@@ -1,8 +1,13 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import {
-    FaPhoneAlt, FaEnvelope, FaMapMarkerAlt, FaPaperPlane,
-    FaStar, FaClock, FaWhatsapp, FaCheckCircle, FaSpinner
+    FaPhoneAlt, 
+    FaMapMarkerAlt, 
+    FaPaperPlane,
+    FaStar, 
+    FaWhatsapp, 
+    FaCheckCircle, 
+    FaSpinner
 } from "react-icons/fa";
 
 const Contact = () => {
