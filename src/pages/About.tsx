@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
 import {
     FaBullseye,
     FaLightbulb,
@@ -251,13 +252,17 @@ const About = () => {
                             <p className="text-blue-100 mb-8 max-w-2xl mx-auto">
                                 Découvrez nos formations et certifications pour booster votre carrière.
                             </p>
-                            <motion.button
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.98 }}
-                                className="bg-white text-blue-600 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
-                            >
-                                Explorer nos formations
-                            </motion.button>
+                            <Link to="/formations">
+                                <motion.button
+                                    whileHover={{ scale: 1.05 }}
+                                    whileTap={{ scale: 0.98 }}
+                                    className="bg-white text-blue-600 px-8 py-3 rounded-xl font-bold shadow-lg hover:shadow-xl transition-all duration-300"
+                                >
+                                    Explorer nos formations
+                                </motion.button>
+                            </Link>
+                           
+                            
                         </div>
                     </motion.div>
                 </div>

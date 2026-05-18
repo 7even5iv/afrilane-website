@@ -12,7 +12,7 @@ export const PARTNERS = [
   { name: 'CISCO', logo: '/logos/cisco.png' },
   { name: 'PECB', logo: '/logos/pecb.png' },
   { name: 'FORTINET', logo: '/logos/fortinet.png' },
-  { name: 'MICROSOFT', logo: '/logos/microsoft.png' },
+  { name: 'MICROSOFT', logo: '/logos/microsoft.jpg' },
   { name: 'Pearson|Vue', logo: '/logos/pearson-vue.png' },
 ];
 // CARTES CERTIFICATIONS
@@ -106,16 +106,6 @@ export const CERTIFICATIONS_DATA = [
   },
   // SÉCURITÉ
   {
-    id: "sec-plus",
-    name: "CompTIA Security+",
-    provider: "CompTIA",
-    category: "Sécurité",
-    trainingPrice: 175000,
-    examPrice: 245000,
-    duration: "40h",
-    description: "Les bases fondamentales de la cybersécurité mondiale."
-  },
-  {
     id: "iso-27001",
     name: "ISO/IEC 27001 Lead Implementer",
     provider: "PECB",
@@ -123,7 +113,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 450000,
     examPrice: 75000, 
     duration: "5 Jours",
-    description: "Devenez expert en mise en œuvre de systèmes de management de la sécurité."
+    description: "Devenez expert en mise en œuvre de systèmes de management de la sécurité.",
+    image: '/images/iso.png'
   },
   {
     id: "ceh",
@@ -133,7 +124,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 200000,
     examPrice: 300000,
     duration: "40h",
-    description: "Apprenez les techniques de piratage éthique pour protéger les systèmes."
+    description: "Apprenez les techniques de piratage éthique pour protéger les systèmes.",
+    image: '/images/ceh.jpg'
   },
   {
     id: "fortinet",
@@ -143,7 +135,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 220000,
     examPrice: 150000,
     duration: "40h",
-    description: "Maîtrisez la sécurité des réseaux avec les solutions Fortinet."
+    description: "Maîtrisez la sécurité des réseaux avec les solutions Fortinet.",
+    image: '/images/fortinet.png'
 
   },
   {
@@ -154,7 +147,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 500000,
     examPrice: 700000,
     duration: "5 Jours",
-    description: "La certification de sécurité la plus reconnue au monde pour les professionnels expérimentés."
+    description: "La certification de sécurité la plus reconnue au monde pour les professionnels expérimentés.",
+    image: '/images/cissp.jpg'
   },
   {
     id:"ccie-security",
@@ -164,7 +158,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 600000,
     examPrice: 1.000000,
     duration: "50h",
-    description: "Devenez un expert en sécurité des réseaux avec la certification CCIE Security."
+    description: "Devenez un expert en sécurité des réseaux avec la certification CCIE Security.",
+    image: '/images/ccie.png'
   },
   // MANAGEMENT
   {
@@ -175,7 +170,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 350000,
     examPrice: 405000,
     duration: "35h",
-    description: "La certification n°1 mondiale pour les chefs de projet."
+    description: "La certification n°1 mondiale pour les chefs de projet.",
+    image: '/images/pmp.png'
   },
   // CLOUD
   {
@@ -186,7 +182,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 100000,
     examPrice: 165000,
     duration: "20h",
-    description: "Les bases du cloud computing avec Microsoft Azure."
+    description: "Les bases du cloud computing avec Microsoft Azure.",
+    image: '/images/azure.png'
   },
   // GESTION DES SERVICES
   {
@@ -197,7 +194,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 120000,
     examPrice: 200000,
     duration: "16h",
-    description: "Les meilleures pratiques pour la gestion efficace des services IT."
+    description: "Les meilleures pratiques pour la gestion efficace des services IT.",
+    image: '/images/itil.png'
   },
   // BASES DE DONNÉES
   { 
