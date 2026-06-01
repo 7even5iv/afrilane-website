@@ -104,6 +104,17 @@ export const CERTIFICATIONS_DATA = [
     description: "Conception et gestion avancée des réseaux d'entreprise.",
     image: '/images/ccnp.jpg'
   },
+ {
+    id: "comptia A+",
+    name: "CompTIA A+",
+    provider: "CompTIA",
+    category: "Réseaux",
+    trainingPrice: 150000,
+    examPrice: 200000,
+    duration: "30h",
+    description: "La certification de base pour les professionnels de l'informatique.",
+    image: '/images/comptia-A+.png'
+  },
   // SÉCURITÉ
   {
     id: "iso-27001",
@@ -115,6 +126,28 @@ export const CERTIFICATIONS_DATA = [
     duration: "5 Jours",
     description: "Devenez expert en mise en œuvre de systèmes de management de la sécurité.",
     image: '/images/iso.png'
+  },
+  {
+    id: "Comptia-security-plus",
+    name: "CompTIA Security+",
+    provider: "CompTIA",
+    category: "Sécurité",
+    trainingPrice: 150000,
+    examPrice: 200000,
+    duration: "30h",
+    description: "La certification de base pour les professionnels de la sécurité informatique.",
+    image: '/images/security-plus.png'
+  },
+  {
+    id: "comptia-cysa",
+    name: "CompTIA CySA+",
+    provider: "CompTIA",
+    category: "Sécurité",
+    trainingPrice: 200000,
+    examPrice: 250000,
+    duration: "30h",
+    description: "La certification pour les analystes de sécurité en cybersécurité.",
+    image: '/images/comptia-cysa+.png'
   },
   {
     id: "ceh",
