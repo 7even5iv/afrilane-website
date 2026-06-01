@@ -9,24 +9,12 @@ import {
     FaInfoCircle,
     FaStar,
 } from "react-icons/fa";
-import QuoteModal from "../components/ui/QuoteModal";
-
-// Supprimer l'interface Certification car elle n'est pas utilisée
-// interface Certification {
-//     id: string;
-//     name: string;
-//     provider: string;
-//     category: string;
-//     trainingPrice: number;
-//     examPrice: number;
-//     duration: string;
-//     description: string;
-//     image?: string;
-// }
+import CertificationModal from "../components/ui/CertificationModal";
 
 const Certifications = () => {
     const [activeCategory, setActiveCategory] = useState("Tous");
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [selectedCertification, setSelectedCertification] = useState<any>(null);
 
     const filteredCerts =
         activeCategory === "Tous"
@@ -34,6 +22,17 @@ const Certifications = () => {
             : CERTIFICATIONS_DATA.filter(
                 (cert) => cert.category === activeCategory
             );
+
+    const handleOpenModal = (certification: any) => {
+        console.log("Certification sélectionnée:", certification);
+        setSelectedCertification(certification);
+        setIsModalOpen(true);
+    };
+
+    const handleCloseModal = () => {
+        setIsModalOpen(false);
+        setSelectedCertification(null);
+    };
 
     return (
         <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-50 via-white to-blue-50/30 pt-32 pb-24">
@@ -186,13 +185,27 @@ const Certifications = () => {
                                                 FCFA
                                             </span>
                                         </div>
+                                        {cert.examPrice > 0 && (
+                                            <div className="mt-2">
+                                                <span className="text-[10px] font-bold uppercase tracking-wider text-gray-400">
+                                                    Examen seul
+                                                </span>
+                                                <div className="flex items-baseline gap-1 mt-1">
+                                                    <span className="text-xl font-black text-gray-900">
+                                                        {Number(cert.examPrice).toLocaleString()}
+                                                    </span>
+                                                    <span className="text-sm font-medium text-gray-500">
+                                                        FCFA
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        )}
                                     </div>
 
                                     {/* Actions */}
                                     <div className="grid grid-cols-2 gap-3 mt-auto">
                                         <button
                                             onClick={() => {
-                                                // Logique pour les détails
                                                 console.log("Détails de la certification:", cert);
                                             }}
                                             className="flex items-center justify-center gap-2 rounded-xl border border-gray-200 bg-white px-4 py-2.5 text-sm font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:border-gray-300"
@@ -201,8 +214,8 @@ const Certifications = () => {
                                             Détails
                                         </button>
                                         <button
-                                            onClick={() => setIsModalOpen(true)}
-                                            className="flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:bg-blue-700 hover:shadow-md active:scale-95"
+                                            onClick={() => handleOpenModal(cert)}
+                                            className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-blue-600 to-blue-700 px-4 py-2.5 text-sm font-semibold text-white shadow-sm transition-all duration-300 hover:shadow-md active:scale-95"
                                         >
                                             <FaUserPlus size={14} />
                                             S'inscrire
@@ -231,10 +244,11 @@ const Certifications = () => {
                 )}
             </div>
 
-            {/* MODAL */}
-            <QuoteModal
+            {/* MODALE D'INSCRIPTION CERTIFICATION */}
+            <CertificationModal
                 isOpen={isModalOpen}
-                onClose={() => setIsModalOpen(false)}
+                onClose={handleCloseModal}
+                certification={selectedCertification}
             />
         </div>
     );

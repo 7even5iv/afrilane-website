@@ -13,3 +13,17 @@ body {
   @apply bg-afrilane-white text-afrilane-dark-grey;
   font-family: 'Inter', sans-serif; /* Ou Montserrat si tu l'as installée */
 }
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 10px;
+}
