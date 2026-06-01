@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom"; // Important pour la navigation sans rechargement
+import { Link } from "react-router-dom";
 import {
     FaMapMarkerAlt,
     FaEnvelope,
@@ -35,7 +35,6 @@ const Footer = () => {
         });
     };
 
-    // Variantes d'animation avec "as const" pour éviter les erreurs TypeScript
     const footerVariants = {
         hidden: { opacity: 0, y: 50 },
         visible: {
@@ -115,39 +114,7 @@ const Footer = () => {
                 {/* Container principal Glassmorphism */}
                 <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl hover:shadow-[0_0_50px_rgba(59,130,246,0.2)] transition-shadow duration-500">
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-
-                        {/* SECTION LOGO & ABOUT */}
-                        <motion.div className="space-y-6" variants={itemVariants}>
-                            <Link to="/">
-                                <motion.img
-                                    src={logo}
-                                    alt="Afrilane"
-                                    className="h-12 w-auto brightness-0 invert"
-                                    whileHover={{ scale: 1.05, rotate: 2 }}
-                                />
-                            </Link>
-                            <p className="text-gray-400 text-sm leading-relaxed">
-                                Entreprise d'ingénierie informatique spécialisée
-                                dans la formation certifiante, la formation professionnelle, l'audit et conseil IT. Nous sommes passionnés par
-                                l'intégration de solutions technologiques
-                                au Cameroun.
-                            </p>
-                            <div className="flex gap-3 pt-2">
-                                {socialLinks.map((social, index) => (
-                                    <motion.a
-                                        key={index}
-                                        href={social.href}
-                                        target="_blank"
-                                        rel="noopener noreferrer"
-                                        className={`group w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-all duration-300 ${social.hover}`}
-                                        whileHover={{ scale: 1.15, y: -4 }}
-                                    >
-                                        <social.Icon className="text-gray-300 group-hover:text-white text-sm" />
-                                    </motion.a>
-                                ))}
-                            </div>
-                        </motion.div>
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 mb-16">
 
                         {/* SECTION NAVIGATION */}
                         <motion.div variants={itemVariants}>
@@ -168,10 +135,56 @@ const Footer = () => {
                             </ul>
                         </motion.div>
 
-                        {/* SECTION ADRESSE (YAOUNDÉ) */}
+                        {/* SECTION LOGO CENTRÉE AVEC TEXTE AFRILANE */}
+                        <motion.div 
+                            className="flex flex-col items-center justify-center space-y-6"
+                            variants={itemVariants}
+                        >
+                            <Link to="/" className="flex items-center gap-3 group">
+                                <motion.div
+                                    className="relative"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    {/* Effet de glow autour du logo */}
+                                    <div className="absolute inset-0 bg-blue-500/20 blur-2xl rounded-full group-hover:bg-blue-500/30 transition-all duration-500" />
+                                    <img
+                                        src={logo}
+                                        alt="Afrilane"
+                                        className="h-16 w-auto brightness-0 invert relative z-10"
+                                    />
+                                </motion.div>
+                                <motion.span 
+                                    className="text-white text-2xl font-bold tracking-tight"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.3 }}
+                                >
+                                    AFRILANE
+                                </motion.span>
+                            </Link>
+                            <p className="text-gray-400 text-sm leading-relaxed text-center max-w-xs">
+                                Entreprise d'ingénierie informatique spécialisée dans la formation certifiante, la formation professionnelle, l'audit et conseil IT.
+                            </p>
+                            <div className="flex gap-3 pt-2">
+                                {socialLinks.map((social, index) => (
+                                    <motion.a
+                                        key={index}
+                                        href={social.href}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`group w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center transition-all duration-300 ${social.hover}`}
+                                        whileHover={{ scale: 1.15, y: -4 }}
+                                    >
+                                        <social.Icon className="text-gray-300 group-hover:text-white text-sm" />
+                                    </motion.a>
+                                ))}
+                            </div>
+                        </motion.div>
+
+                        {/* SECTION ADRESSE & CONTACT */}
                         <motion.div variants={itemVariants}>
                             <h4 className="text-lg font-bold mb-6 border-l-4 border-blue-500 pl-3 text-white">
-                                Siège Social
+                                Contact
                             </h4>
                             <ul className="space-y-5 text-gray-400 text-sm">
                                 <li className="flex items-start gap-3 group">
@@ -190,15 +203,6 @@ const Footer = () => {
                                         contact@afrilane.cm
                                     </a>
                                 </li>
-                            </ul>
-                        </motion.div>
-
-                        {/* SECTION CONTACT */}
-                        <motion.div variants={itemVariants}>
-                            <h4 className="text-lg font-bold mb-6 border-l-4 border-blue-500 pl-3 text-white">
-                                Contact Rapide
-                            </h4>
-                            <ul className="space-y-5 text-gray-400 text-sm">
                                 {contactInfo.map((info, index) => (
                                     <li key={index} className="flex items-center gap-3 group">
                                         <info.icon className="text-blue-500 text-lg group-hover:scale-110 transition-transform flex-shrink-0" />
