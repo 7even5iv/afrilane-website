@@ -189,7 +189,7 @@ export const CERTIFICATIONS_DATA = [
     provider: "Cisco",
     category: "Sécurité",
     trainingPrice: 600000,
-    examPrice: 1.000000,
+    examPrice: 1000000,
     duration: "50h",
     description: "Devenez un expert en sécurité des réseaux avec la certification CCIE Security.",
     image: '/images/ccie.png'
