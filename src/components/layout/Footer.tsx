@@ -115,25 +115,32 @@ const Footer = () => {
                 {/* Container principal Glassmorphism */}
                 <div className="relative backdrop-blur-xl bg-white/5 border border-white/10 rounded-3xl p-8 md:p-12 shadow-2xl hover:shadow-[0_0_50px_rgba(59,130,246,0.2)] transition-shadow duration-500">
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 text-center">
 
                         {/* SECTION LOGO & ABOUT */}
-                        <motion.div className="space-y-6" variants={itemVariants}>
-                            <Link to="/">
+                        <motion.div className="space-y-6 flex flex-col items-center" variants={itemVariants}>
+                            <Link to="/" className="flex items-center justify-center gap-3 group">
                                 <motion.img
                                     src={logo}
                                     alt="Afrilane"
                                     className="h-12 w-auto brightness-0 invert"
                                     whileHover={{ scale: 1.05, rotate: 2 }}
                                 />
+                                <motion.span 
+                                    className="text-white text-2xl font-bold tracking-tight"
+                                    whileHover={{ scale: 1.05 }}
+                                    transition={{ duration: 0.2 }}
+                                >
+                                    AFRILANE
+                                </motion.span>
                             </Link>
-                            <p className="text-gray-400 text-sm leading-relaxed">
+                            <p className="text-gray-400 text-sm leading-relaxed max-w-md mx-auto">
                                 Entreprise d'ingénierie informatique spécialisée
                                 dans la formation certifiante, la formation professionnelle, l'audit et conseil IT. Nous sommes passionnés par
                                 l'intégration de solutions technologiques
                                 au Cameroun.
                             </p>
-                            <div className="flex gap-3 pt-2">
+                            <div className="flex gap-3 pt-2 justify-center">
                                 {socialLinks.map((social, index) => (
                                     <motion.a
                                         key={index}
@@ -151,7 +158,7 @@ const Footer = () => {
 
                         {/* SECTION NAVIGATION */}
                         <motion.div variants={itemVariants}>
-                            <h4 className="text-lg font-bold mb-6 border-l-4 border-blue-500 pl-3 text-white">
+                            <h4 className="text-lg font-bold mb-6 text-white">
                                 Navigation
                             </h4>
                             <ul className="space-y-4 text-sm">
@@ -170,13 +177,13 @@ const Footer = () => {
 
                         {/* SECTION ADRESSE (YAOUNDÉ) */}
                         <motion.div variants={itemVariants}>
-                            <h4 className="text-lg font-bold mb-6 border-l-4 border-blue-500 pl-3 text-white">
+                            <h4 className="text-lg font-bold mb-6 text-white">
                                 Siège Social
                             </h4>
                             <ul className="space-y-5 text-gray-400 text-sm">
-                                <li className="flex items-start gap-3 group">
+                                <li className="flex items-start justify-center gap-3 group">
                                     <FaMapMarkerAlt className="text-blue-500 text-lg mt-1 group-hover:scale-110 transition-transform flex-shrink-0" />
-                                    <span>
+                                    <span className="text-left">
                                         Yaoundé - Maétur Biteng
                                         <br />
                                         (Entrée Maétur)
@@ -184,9 +191,9 @@ const Footer = () => {
                                         Cameroun
                                     </span>
                                 </li>
-                                <li className="flex items-start gap-3 group">
+                                <li className="flex items-start justify-center gap-3 group">
                                     <FaEnvelope className="text-blue-500 text-lg mt-1 group-hover:scale-110 transition-transform flex-shrink-0" />
-                                    <a href="mailto:contact@afrilane.cm" className="hover:text-white transition-colors break-all">
+                                    <a href="mailto:contact@afrilane.cm" className="hover:text-white transition-colors break-all text-left">
                                         contact@afrilane.cm
                                     </a>
                                 </li>
@@ -195,12 +202,12 @@ const Footer = () => {
 
                         {/* SECTION CONTACT */}
                         <motion.div variants={itemVariants}>
-                            <h4 className="text-lg font-bold mb-6 border-l-4 border-blue-500 pl-3 text-white">
+                            <h4 className="text-lg font-bold mb-6 text-white">
                                 Contact Rapide
                             </h4>
                             <ul className="space-y-5 text-gray-400 text-sm">
                                 {contactInfo.map((info, index) => (
-                                    <li key={index} className="flex items-center gap-3 group">
+                                    <li key={index} className="flex items-center justify-center gap-3 group">
                                         <info.icon className="text-blue-500 text-lg group-hover:scale-110 transition-transform flex-shrink-0" />
                                         {info.href ? (
                                             <a href={info.href} className="hover:text-white transition-colors">{info.text}</a>
