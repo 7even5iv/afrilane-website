@@ -38,6 +38,9 @@ const Header = () => {
         "/contact"
     ];
 
+    // Vérifier si on est sur la page d'accueil
+    const isHomePage = location.pathname === "/";
+
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
@@ -89,7 +92,7 @@ const Header = () => {
                         <div className="relative flex items-center justify-between h-14 sm:h-16 md:h-20 px-3 sm:px-4 md:px-6">
 
                             {/* ===== MOBILE ===== */}
-                            {/* Partie gauche: Bouton retour (mobile) */}
+                            {/* Partie gauche: Bouton retour (mobile) + Logo (sur l'accueil) */}
                             <div className="flex items-center gap-2 lg:hidden">
                                 {showBackButton && (
                                     <motion.button
@@ -103,28 +106,74 @@ const Header = () => {
                                         <span className="text-xs font-medium hidden xs:inline">Retour</span>
                                     </motion.button>
                                 )}
+
+                                {/* Logo à gauche sur l'accueil (mobile) */}
+                                {isHomePage && !showBackButton && (
+                                    <Link to="/" className="flex items-center gap-2 group flex-shrink-0">
+                                        <motion.img
+                                            src={logo}
+                                            alt="Afrilane"
+                                            className="h-8 sm:h-9 w-auto"
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{ type: "spring", stiffness: 400 }}
+                                        />
+                                        <motion.span
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.2 }}
+                                            className="text-lg sm:text-xl font-bold bg-blue-600 bg-clip-text text-transparent"
+                                        >
+                                            AFRILANE
+                                        </motion.span>
+                                    </Link>
+                                )}
                             </div>
 
-                            {/* Logo centré - UNIQUEMENT SUR MOBILE */}
-                            <div className="absolute left-1/2 transform -translate-x-1/2 lg:hidden">
-                                <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
-                                    <motion.img
-                                        src={logo}
-                                        alt="Afrilane"
-                                        className="h-8 sm:h-9 w-auto"
-                                        whileHover={{ scale: 1.05 }}
-                                        transition={{ type: "spring", stiffness: 400 }}
-                                    />
-                                    <motion.span
-                                        initial={{ opacity: 0, x: -10 }}
-                                        animate={{ opacity: 1, x: 0 }}
-                                        transition={{ duration: 0.5, delay: 0.2 }}
-                                        className="text-lg sm:text-xl font-bold bg-blue-600 bg-clip-text text-transparent"
-                                    >
-                                        AFRILANE
-                                    </motion.span>
-                                </Link>
-                            </div>
+                            {/* Logo centré sur les autres pages (mobile) - UNIQUEMENT quand il n'y a pas de bouton retour */}
+                            {!isHomePage && !showBackButton && (
+                                <div className="absolute left-1/2 transform -translate-x-1/2 lg:hidden">
+                                    <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
+                                        <motion.img
+                                            src={logo}
+                                            alt="Afrilane"
+                                            className="h-8 sm:h-9 w-auto"
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{ type: "spring", stiffness: 400 }}
+                                        />
+                                        <motion.span
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.2 }}
+                                            className="text-lg sm:text-xl font-bold bg-blue-600 bg-clip-text text-transparent"
+                                        >
+                                            AFRILANE
+                                        </motion.span>
+                                    </Link>
+                                </div>
+                            )}
+
+                            {/* Logo centré sur les pages avec bouton retour (mobile) - Le logo reste centré mais le bouton retour est à gauche */}
+                            {!isHomePage && showBackButton && (
+                                <div className="absolute left-1/2 transform -translate-x-1/2 lg:hidden">
+                                    <Link to="/" className="flex items-center gap-2 sm:gap-3 group flex-shrink-0">
+                                        <motion.img
+                                            src={logo}
+                                            alt="Afrilane"
+                                            className="h-8 sm:h-9 w-auto"
+                                            whileHover={{ scale: 1.05 }}
+                                            transition={{ type: "spring", stiffness: 400 }}
+                                        />
+                                        <motion.span
+                                            initial={{ opacity: 0, x: -10 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            transition={{ duration: 0.5, delay: 0.2 }}
+                                            className="text-lg sm:text-xl font-bold bg-blue-600 bg-clip-text text-transparent"
+                                        >
+                                            AFRILANE
+                                        </motion.span>
+                                    </Link>
+                                </div>
+                            )}
 
                             {/* Espace vide pour équilibrer (mobile) */}
                             <div className="flex-1 lg:hidden" />
@@ -180,7 +229,7 @@ const Header = () => {
                                 </Link>
                             </div>
 
-                            {/* Navigation Desktop */}
+                            {/* Navigation Desktop - Centrée */}
                             <nav className="hidden lg:flex items-center gap-1 xl:gap-2 flex-1 justify-center">
                                 {menuItems.filter(item => item.name !== "Connexion").map((item) => {
                                     const isActive = location.pathname === item.href;
