@@ -132,7 +132,7 @@ const Certifications = () => {
                     >
                         <FaStar className="text-blue-500 text-[10px] sm:text-xs" />
                         <span className="text-[10px] sm:text-xs font-bold uppercase tracking-wider text-blue-600">
-                            Certifications pro
+                            Certifications internationales
                         </span>
                     </motion.div>
 
