@@ -88,7 +88,7 @@ export const CERTIFICATIONS_DATA = [
     provider: "Cisco",
     category: "Réseaux",
     trainingPrice: 250000,
-    examPrice: 190000,
+    examPrice: 200000,
     duration: "40h",
     description: "Installation, configuration et dépannage des réseaux d'entreprise.",
     image: '/images/ccna.png'
@@ -102,7 +102,7 @@ export const CERTIFICATIONS_DATA = [
     examPrice: 250000,
     duration: "35h",
     description: "Conception et gestion avancée des réseaux d'entreprise.",
-    image: '/images/ccnp.jpg'
+    image: '/images/ccnp.png'
   },
  {
     id: "comptia A+",
@@ -239,7 +239,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 180000,
     examPrice: 245000,
     duration: "40h",
-    description: "La certification d'entrée pour les administrateurs de bases de données Oracle."
+    description: "La certification d'entrée pour les administrateurs de bases de données Oracle.",
+    image: '/images/oracle-oca.png'
   },
   {
     id: "mcsa-sql",
@@ -249,7 +250,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 200000,
     examPrice: 300000,
     duration: "40h",
-    description: "La certification pour les administrateurs de bases de données SQL Server."
+    description: "La certification pour les administrateurs de bases de données SQL Server.",
+    image: '/images/mcsa.webp'
   },
   // BUREAUTIQUE
   {
@@ -260,7 +262,8 @@ export const CERTIFICATIONS_DATA = [
     trainingPrice: 80000,
     examPrice: 100000,
     duration: "20h",
-    description: "La certification pour maîtriser les outils Microsoft Office."
+    description: "La certification pour maîtriser les outils Microsoft Office.",
+    image: '/images/mos.webp'
   }
   
 ];

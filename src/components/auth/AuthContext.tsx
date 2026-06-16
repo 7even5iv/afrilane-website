@@ -1,6 +1,5 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState} from 'react';
 
-// Interface pour l'utilisateur
 interface User {
     id?: number;
     name: string;
@@ -9,7 +8,6 @@ interface User {
     [key: string]: any;
 }
 
-// Interface pour les données de connexion
 interface LoginData {
     token: string;
     user: User;
@@ -26,7 +24,15 @@ interface AuthContextType {
 const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
-    const [user, setUser] = useState<User | null>(null);
+    // Optimisation : On récupère les infos de base pour éviter l'affichage "Utilisateur" après un F5
+    const [user, setUser] = useState<User | null>(() => {
+        const name = localStorage.getItem('user_name');
+        const role = localStorage.getItem('user_role');
+        const email = localStorage.getItem('user_email'); // Optionnel
+        if (name && role) return { name, role, email: email || "" } as User;
+        return null;
+    });
+
     const [token, setToken] = useState<string | null>(localStorage.getItem('token'));
     const [role, setRole] = useState<string | null>(localStorage.getItem('user_role'));
 
@@ -34,9 +40,11 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
         setToken(data.token);
         setRole(data.user.role);
         setUser(data.user);
-        localStorage.setItem('token', data.token);
-        localStorage.setItem('user_role', data.user.role);
-        localStorage.setItem('user_name', data.user.name);
+
+        localStorage.setItem("token", data.token);
+        localStorage.setItem("user_role", data.user.role);
+        localStorage.setItem("user_name", data.user.name);
+        if (data.user.email) localStorage.setItem("user_email", data.user.email);
     };
 
     const logout = () => {

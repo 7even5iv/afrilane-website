@@ -594,7 +594,7 @@ const CertificationModal = ({ isOpen, onClose, certification }: CertificationMod
                                                 }`}
                                             >
                                                 <img 
-                                                    src="/images/momo-logo.png" 
+                                                    src="/logos/momo-logo.png" 
                                                     alt="MTN MoMo" 
                                                     className="h-8 md:h-12 w-auto object-contain mb-1 md:mb-2"
                                                     onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/60x40?text=MTN" }}
@@ -612,7 +612,7 @@ const CertificationModal = ({ isOpen, onClose, certification }: CertificationMod
                                                 }`}
                                             >
                                                 <img 
-                                                    src="/images/om-logo.jpg" 
+                                                    src="/logos/om-logo.jpg" 
                                                     alt="Orange Money" 
                                                     className="h-8 md:h-12 w-auto object-contain mb-1 md:mb-2"
                                                     onError={(e) => { e.currentTarget.src = "https://via.placeholder.com/60x40?text=Orange" }}

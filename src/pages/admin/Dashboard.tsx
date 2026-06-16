@@ -2,14 +2,16 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from "framer-motion";
 import {
-    FaChartLine, FaUsers, FaBookOpen, FaCalendarAlt,
-    FaTasks, FaGraduationCap, FaCog, FaSignOutAlt,
+    FaChartLine, FaBookOpen, FaCalendarAlt,
+    FaTasks, FaCog, FaSignOutAlt,
     FaUserCircle, FaBriefcase, FaFileSignature,
     FaChevronLeft, FaChevronRight, FaBell,
-    FaSearch, FaMoon, FaSun, FaEdit, FaBars, FaTimes
+    FaSearch, FaMoon, FaSun, FaEdit, FaBars, FaTimes,
+    FaShieldAlt,
+    FaUserGraduate, FaChalkboardTeacher, FaFileAlt,
 } from 'react-icons/fa';
 
-// Import des sous-modules (à créer à l'étape suivante)
+// Import des sous-modules
 import DashboardOverview from './DashboardOverview';
 import Etudiants from './Etudiants';
 import FormationsAdmin from './Formations';
@@ -31,15 +33,24 @@ const Dashboard = () => {
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const [isMobile, setIsMobile] = useState(false);
+    const [isTablet, setIsTablet] = useState(false);
+    const [notifications] = useState(3);
 
-    // Détecter la taille de l'écran
+    // RÉCUPÉRATION DES INFOS ACTEUR
+    const userRole = localStorage.getItem("user_role") || "etudiant";
+    const userName = localStorage.getItem("user_name") || "Utilisateur";
+
     useEffect(() => {
         const handleResize = () => {
-            const mobile = window.innerWidth < 768;
+            const width = window.innerWidth;
+            const mobile = width < 768;
+            const tablet = width >= 768 && width < 1024;
             setIsMobile(mobile);
-            if (!mobile) {
-                setIsMobileMenuOpen(false);
-            }
+            setIsTablet(tablet);
+            if (!mobile && !tablet) setIsMobileMenuOpen(false);
+            // Auto-collapse sidebar on tablet
+            if (tablet && !isSidebarCollapsed) setIsSidebarCollapsed(true);
+            if (!tablet && isSidebarCollapsed && !isMobile) setIsSidebarCollapsed(false);
         };
         handleResize();
         window.addEventListener('resize', handleResize);
@@ -47,27 +58,44 @@ const Dashboard = () => {
     }, []);
 
     const handleLogout = () => {
-        localStorage.removeItem("token");
+        localStorage.clear();
         navigate("/login");
     };
 
+    // CONFIGURATION DES DROITS D'ACCÈS
     const menuItems = [
-        { id: 'dashboard', label: 'Dashboard', icon: FaChartLine },
-        { id: 'etudiants', label: 'Étudiants', icon: FaGraduationCap },
-        { id: 'formations', label: 'Formations', icon: FaBookOpen },
-        { id: 'formateurs', label: 'Formateurs', icon: FaUsers },
-        { id: 'course-modules', label: 'Modules (UE)', icon: FaBookOpen },
-        { id: 'cahierTexte', label: 'Cahier de texte', icon: FaEdit },
-        { id: 'notes', label: 'Notes', icon: FaFileSignature },
-        { id: 'presences', label: 'Présences', icon: FaCalendarAlt },
-        { id: 'planning', label: 'Planning', icon: FaTasks },
-        { id: 'stages', label: 'Stages', icon: FaBriefcase },
-        { id: 'epreuves', label: 'Épreuves', icon: FaFileSignature },
-        { id: 'utilisateurs', label: 'Utilisateurs', icon: FaUserCircle },
-        { id: 'parametres', label: 'Paramètres', icon: FaCog },
+        { id: 'dashboard', label: 'Dashboard', icon: FaChartLine, roles: ['super-admin', 'admin', 'secretaire', 'formateur'] },
+        { id: 'etudiants', label: 'Étudiants', icon: FaUserGraduate, roles: ['super-admin', 'admin', 'secretaire'] },
+        { id: 'formateurs', label: 'Formateurs', icon: FaChalkboardTeacher, roles: ['super-admin', 'admin'] },
+        { id: 'formations', label: 'Formations', icon: FaBriefcase, roles: ['super-admin', 'admin'] },
+        { id: 'course-modules', label: 'Modules', icon: FaBookOpen, roles: ['super-admin', 'admin'] },
+        { id: 'notes', label: 'Notes', icon: FaFileSignature, roles: ['super-admin', 'formateur'] },
+        { id: 'presences', label: 'Présences', icon: FaCalendarAlt, roles: ['super-admin', 'secretaire', 'formateur'] },
+        { id: 'cahierTexte', label: 'Cahier de texte', icon: FaEdit, roles: ['super-admin', 'formateur'] },
+        { id: 'planning', label: 'Planning', icon: FaTasks, roles: ['super-admin', 'admin', 'secretaire', 'formateur'] },
+        { id: 'stages', label: 'Stages', icon: FaBriefcase, roles: ['super-admin', 'secretaire'] },
+        { id: 'epreuves', label: 'Épreuves', icon: FaFileAlt, roles: ['super-admin', 'formateur'] },
+        { id: 'utilisateurs', label: 'Utilisateurs', icon: FaUserCircle, roles: ['super-admin'] },
+        { id: 'parametres', label: 'Paramètres', icon: FaCog, roles: ['super-admin', 'admin'] },
     ];
 
+    // FILTRAGE DYNAMIQUE DU MENU SELON L'ACTEUR
+    const filteredMenuItems = menuItems.filter(item => item.roles.includes(userRole));
+
     const renderContent = () => {
+        const currentItem = menuItems.find(i => i.id === activeSection);
+        if (currentItem && !currentItem.roles.includes(userRole)) {
+            return (
+                <div className="flex flex-col items-center justify-center p-8 sm:p-16 text-center">
+                    <div className="w-20 h-20 sm:w-24 sm:h-24 rounded-full bg-red-100 flex items-center justify-center mb-4">
+                        <FaShieldAlt className="text-red-500 text-2xl sm:text-3xl" />
+                    </div>
+                    <h3 className="text-lg sm:text-xl font-bold text-gray-800 mb-2">Accès restreint</h3>
+                    <p className="text-gray-500 text-xs sm:text-sm">Vous n'avez pas les droits nécessaires pour accéder à ce module.</p>
+                </div>
+            );
+        }
+
         switch (activeSection) {
             case 'dashboard': return <DashboardOverview />;
             case 'etudiants': return <Etudiants />;
@@ -76,26 +104,16 @@ const Dashboard = () => {
             case 'course-modules': return <CourseModules />;
             case 'utilisateurs': return <Utilisateurs />;
             case 'notes': return <Notes />;
-            case 'stages': return <Stages />;  
-            case 'epreuves': return <Epreuves />; 
+            case 'stages': return <Stages />;
+            case 'epreuves': return <Epreuves />;
             case 'presences': return <Presences />;
             case 'cahierTexte': return <CahierTexte />;
             case 'parametres': return <Parametres />;
             case 'planning': return <Planning />;
-            default:
-                return (
-                    <div className="flex flex-col items-center justify-center h-96 bg-white rounded-3xl shadow-sm border border-gray-100">
-                        <div className="w-24 h-24 bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-400 rounded-2xl flex items-center justify-center mb-6">
-                            <FaTasks size={36} />
-                        </div>
-                        <h2 className="text-xl md:text-2xl font-bold text-gray-800 mb-2">Module en développement</h2>
-                        <p className="text-gray-400 text-sm md:text-base">Le module {activeSection} sera bientôt disponible</p>
-                    </div>
-                );
+            default: return <DashboardOverview />;
         }
     };
 
-    // Menu mobile overlay
     const MobileMenu = () => (
         <AnimatePresence>
             {isMobileMenuOpen && (
@@ -104,57 +122,50 @@ const Dashboard = () => {
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
-                        className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                        className="fixed inset-0 bg-gray-900/60 backdrop-blur-sm z-40 md:hidden"
                         onClick={() => setIsMobileMenuOpen(false)}
                     />
                     <motion.aside
                         initial={{ x: -300 }}
                         animate={{ x: 0 }}
                         exit={{ x: -300 }}
-                        transition={{ type: "tween", duration: 0.3 }}
-                        className="fixed top-0 left-0 w-72 h-full bg-white border-r border-gray-200 flex flex-col z-50 md:hidden shadow-xl"
+                        transition={{ type: "spring", damping: 25 }}
+                        className="fixed top-0 left-0 w-72 h-full bg-white flex flex-col z-50 md:hidden shadow-2xl"
                     >
-                        <div className="p-6 border-b border-gray-100 flex justify-between items-center">
+                        <div className="p-5 sm:p-6 border-b border-gray-100 flex justify-between items-center">
                             <div>
-                                <div className="text-2xl font-black tracking-tighter text-gray-800">
-                                    Afrilane <span className="text-blue-600">Admin</span>
-                                </div>
-                                <p className="text-[10px] text-gray-400 uppercase tracking-[0.3em] mt-1">Système de Gestion</p>
+                                <div className="text-lg sm:text-xl font-bold text-gray-800">AFRILANE <span className="text-blue-600">ADMIN</span></div>
+                                <p className="text-[10px] text-gray-400 font-medium uppercase tracking-wider mt-0.5">{userRole}</p>
                             </div>
                             <button
                                 onClick={() => setIsMobileMenuOpen(false)}
-                                className="p-2 rounded-lg hover:bg-gray-100 transition-colors"
+                                className="w-8 h-8 rounded-lg bg-gray-100 text-gray-500 hover:bg-gray-200 transition-all flex items-center justify-center"
                             >
-                                <FaTimes size={18} className="text-gray-500" />
+                                <FaTimes size={14} />
                             </button>
                         </div>
-
-                        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-                            {menuItems.map((item) => (
+                        <nav className="flex-1 p-3 sm:p-4 space-y-1 overflow-y-auto">
+                            {filteredMenuItems.map((item) => (
                                 <button
                                     key={item.id}
-                                    onClick={() => {
-                                        setActiveSection(item.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-4 p-3 rounded-xl font-medium transition-all duration-200 ${activeSection === item.id
-                                        ? "bg-blue-50 text-blue-600"
-                                        : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                                    }`}
+                                    onClick={() => { setActiveSection(item.id); setIsMobileMenuOpen(false); }}
+                                    className={`w-full flex items-center gap-3 p-3 rounded-xl font-medium transition-all ${activeSection === item.id
+                                            ? "bg-blue-600 text-white shadow-md"
+                                            : "text-gray-600 hover:bg-gray-50"
+                                        }`}
                                 >
-                                    <item.icon size={18} className={activeSection === item.id ? "text-blue-600" : "text-gray-400"} />
+                                    <item.icon size={16} />
                                     <span className="text-sm">{item.label}</span>
                                 </button>
                             ))}
                         </nav>
-
-                        <div className="p-4 border-t border-gray-100">
+                        <div className="p-3 sm:p-4 border-t border-gray-100">
                             <button
                                 onClick={handleLogout}
-                                className="w-full flex items-center gap-4 p-3 text-red-500 hover:bg-red-50 rounded-xl font-medium text-sm transition-all duration-200"
+                                className="w-full flex items-center gap-3 p-3 text-red-500 hover:bg-red-50 rounded-xl font-medium transition-all"
                             >
-                                <FaSignOutAlt size={18} />
-                                <span>Déconnexion</span>
+                                <FaSignOutAlt size={16} />
+                                <span className="text-sm">Déconnexion</span>
                             </button>
                         </div>
                     </motion.aside>
@@ -164,57 +175,60 @@ const Dashboard = () => {
     );
 
     return (
-        <div className={`min-h-screen flex font-sans transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gray-50'}`}>
-            {/* SIDEBAR - Desktop */}
+        <div className={`min-h-screen flex transition-colors duration-300 ${isDarkMode ? 'bg-gray-900' : 'bg-gradient-to-br from-gray-50 via-white to-gray-50'}`}>
+
+            {/* SIDEBAR DESKTOP & TABLET */}
             {!isMobile && (
-                <aside className={`${isSidebarCollapsed ? 'w-20' : 'w-72'} bg-white border-r border-gray-200 flex flex-col sticky top-0 h-screen shadow-sm transition-all duration-300 z-20 hidden md:flex`}>
-                    <div className={`p-6 border-b border-gray-100 flex ${isSidebarCollapsed ? 'justify-center' : 'justify-between'} items-center`}>
+                <aside className={`
+                    ${isSidebarCollapsed ? 'w-20' : 'w-64'} 
+                    bg-white border-r border-gray-200 flex flex-col sticky top-0 h-screen 
+                    transition-all duration-300 z-20 shadow-sm
+                    ${isTablet ? 'hidden lg:flex' : ''}
+                `}>
+                    <div className={`p-4 lg:p-5 border-b border-gray-100 flex ${isSidebarCollapsed ? 'justify-center' : 'justify-between'} items-center`}>
                         {!isSidebarCollapsed && (
                             <div>
-                                <div className="text-2xl font-black tracking-tighter text-gray-800">
-                                    Afrilane <span className="text-blue-600">Admin</span>
-                                </div>
-                                <p className="text-[10px] text-gray-400 uppercase tracking-[0.3em] mt-1">Système de Gestion</p>
+                                <span className="text-lg lg:text-xl font-bold text-gray-800 tracking-tight">AFRILANE</span>
+                                <p className="text-[10px] text-blue-600 font-medium uppercase tracking-wider mt-0.5">{userRole}</p>
                             </div>
                         )}
                         <button
                             onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
-                            className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-500"
+                            className="w-7 h-7 lg:w-8 lg:h-8 rounded-lg bg-gray-50 text-gray-400 hover:bg-blue-50 hover:text-blue-600 transition-all flex items-center justify-center"
                         >
-                            {isSidebarCollapsed ? <FaChevronRight size={16} /> : <FaChevronLeft size={16} />}
+                            {isSidebarCollapsed ? <FaChevronRight size={11} /> : <FaChevronLeft size={11} />}
                         </button>
                     </div>
 
-                    <nav className="flex-1 p-4 space-y-1 overflow-y-auto mt-4 custom-scrollbar">
-                        {menuItems.map((item) => (
-                            <button
-                                key={item.id}
-                                onClick={() => setActiveSection(item.id)}
-                                className={`w-full flex items-center gap-4 p-3 rounded-xl font-medium transition-all duration-200 group relative ${activeSection === item.id
-                                    ? "bg-blue-50 text-blue-600"
-                                    : "text-gray-600 hover:bg-gray-50 hover:text-gray-900"
-                                }`}
-                            >
-                                <item.icon size={18} className={activeSection === item.id ? "text-blue-600" : "text-gray-400 group-hover:text-gray-600"} />
-                                {!isSidebarCollapsed && (
-                                    <span className="text-sm">{item.label}</span>
-                                )}
+                    <nav className="flex-1 p-2 lg:p-3 space-y-1 overflow-y-auto mt-2 custom-scrollbar">
+                        {filteredMenuItems.map((item) => (
+                            <div key={item.id} className="relative group">
+                                <button
+                                    onClick={() => setActiveSection(item.id)}
+                                    className={`w-full flex items-center gap-3 p-2.5 lg:p-3 rounded-xl font-medium transition-all duration-200 ${activeSection === item.id
+                                            ? "bg-blue-600 text-white shadow-md"
+                                            : "text-gray-600 hover:bg-gray-50"
+                                        }`}
+                                >
+                                    <item.icon size={16} />
+                                    {!isSidebarCollapsed && <span className="text-xs lg:text-sm">{item.label}</span>}
+                                </button>
                                 {isSidebarCollapsed && (
-                                    <div className="absolute left-full ml-2 px-2 py-1 bg-gray-900 text-white text-xs rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-30 pointer-events-none">
+                                    <div className="absolute left-full ml-2 px-3 py-1.5 bg-gray-800 text-white text-xs font-medium rounded-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all whitespace-nowrap z-50 pointer-events-none">
                                         {item.label}
                                     </div>
                                 )}
-                            </button>
+                            </div>
                         ))}
                     </nav>
 
-                    <div className="p-4 border-t border-gray-100">
+                    <div className="p-2 lg:p-3 border-t border-gray-100 mt-auto">
                         <button
                             onClick={handleLogout}
-                            className="w-full flex items-center gap-4 p-3 text-red-500 hover:bg-red-50 rounded-xl font-medium text-sm transition-all duration-200"
+                            className="w-full flex items-center gap-3 p-2.5 lg:p-3 text-red-500 hover:bg-red-50 rounded-xl font-medium transition-all"
                         >
-                            <FaSignOutAlt size={18} />
-                            {!isSidebarCollapsed && <span>Déconnexion</span>}
+                            <FaSignOutAlt size={16} />
+                            {!isSidebarCollapsed && <span className="text-xs lg:text-sm">Déconnexion</span>}
                         </button>
                     </div>
                 </aside>
@@ -222,77 +236,63 @@ const Dashboard = () => {
 
             {/* MAIN CONTENT */}
             <main className="flex-1 overflow-y-auto w-full min-w-0">
-                {/* Header moderne et responsive */}
-                <header className="sticky top-0 z-10 bg-white/80 backdrop-blur-lg border-b border-gray-100 px-4 sm:px-6 md:px-10 py-3 md:py-4">
-                    <div className="flex justify-between items-center gap-3">
-                        {/* Menu burger pour mobile */}
+                {/* HEADER */}
+                <header className="sticky top-0 z-10 bg-white/95 backdrop-blur-md border-b border-gray-200 px-3 sm:px-4 lg:px-6 py-2.5 sm:py-3 flex justify-between items-center shadow-sm">
+                    <div className="flex items-center gap-2 sm:gap-3 flex-1">
                         {isMobile && (
                             <button
                                 onClick={() => setIsMobileMenuOpen(true)}
-                                className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-600"
+                                className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-all flex items-center justify-center"
                             >
-                                <FaBars size={20} />
+                                <FaBars size={16} />
                             </button>
                         )}
-
-                        {/* Barre de recherche - responsive */}
-                        <div className={`flex items-center gap-4 flex-1 ${isMobile ? 'ml-0' : ''}`}>
-                            <div className="relative flex-1 max-w-full md:max-w-md">
-                                <FaSearch className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={14} />
-                                <input
-                                    type="text"
-                                    placeholder={isMobile ? "Rechercher..." : "Rechercher un étudiant, formation..."}
-                                    className="w-full pl-9 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-xl focus:outline-none focus:border-blue-300 focus:ring-2 focus:ring-blue-100 transition-all duration-300 text-sm"
-                                />
-                            </div>
+                        <div className="relative flex-1 max-w-xs sm:max-w-md">
+                            <FaSearch className="absolute left-3 sm:left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xs sm:text-sm" />
+                            <input
+                                type="text"
+                                placeholder="Rechercher..."
+                                className="w-full pl-9 sm:pl-11 pr-3 sm:pr-4 py-2 sm:py-2.5 bg-gray-50 border border-gray-200 rounded-xl text-xs sm:text-sm focus:border-blue-400 focus:ring-2 focus:ring-blue-200 outline-none transition-all"
+                            />
                         </div>
+                    </div>
 
-                        {/* Actions header */}
-                        <div className="flex items-center gap-2 sm:gap-4">
-                            <button className="p-2 rounded-lg hover:bg-gray-100 transition-colors relative text-gray-600">
-                                <FaBell size={16} />
-                                <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full"></span>
-                            </button>
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                        {/* Mode sombre */}
+                        <button
+                            onClick={() => setIsDarkMode(!isDarkMode)}
+                            className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-all flex items-center justify-center"
+                        >
+                            {isDarkMode ? <FaSun size={14} /> : <FaMoon size={14} />}
+                        </button>
 
-                            <button
-                                onClick={() => setIsDarkMode(!isDarkMode)}
-                                className="p-2 rounded-lg hover:bg-gray-100 transition-colors text-gray-600"
-                            >
-                                {isDarkMode ? <FaSun size={16} /> : <FaMoon size={16} />}
-                            </button>
+                        {/* Notifications */}
+                        <button className="relative w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gray-100 text-gray-600 hover:bg-blue-100 hover:text-blue-600 transition-all flex items-center justify-center">
+                            <FaBell size={14} />
+                            {notifications > 0 && (
+                                <span className="absolute -top-1 -right-1 w-4 h-4 sm:w-5 sm:h-5 rounded-full bg-red-500 text-white text-[9px] sm:text-[10px] font-bold flex items-center justify-center">
+                                    {notifications}
+                                </span>
+                            )}
+                        </button>
 
-                            <div className="flex items-center gap-2 sm:gap-3 pl-2 sm:pl-4 border-l border-gray-200">
-                                <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center font-bold shadow-md text-sm">
-                                    AD
-                                </div>
-                                <div className="hidden sm:block">
-                                    <p className="font-semibold text-gray-800 text-sm">Administrateur</p>
-                                    <p className="text-xs text-gray-400">Super Admin</p>
-                                </div>
+                        {/* Profil utilisateur */}
+                        <div className="flex items-center gap-2 sm:gap-3 pl-2 border-l border-gray-200 ml-1 sm:ml-2">
+                            <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-blue-500 to-blue-600 text-white flex items-center justify-center font-bold shadow-md text-xs sm:text-sm uppercase">
+                                {userName.charAt(0)}
+                            </div>
+                            <div className="hidden md:block">
+                                <p className="font-semibold text-gray-800 text-xs sm:text-sm leading-tight">{userName}</p>
+                                <p className="text-[9px] sm:text-[10px] text-blue-600 font-medium uppercase tracking-wider flex items-center gap-1">
+                                    <FaShieldAlt size={7} /> {userRole}
+                                </p>
                             </div>
                         </div>
                     </div>
                 </header>
 
-                {/* Page Title - responsive */}
-                <div className="px-4 sm:px-6 md:px-10 pt-6 sm:pt-8 pb-3 sm:pb-4">
-                    <motion.div
-                        key={activeSection}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-800 capitalize">
-                            {menuItems.find(i => i.id === activeSection)?.label}
-                        </h1>
-                        <p className="text-gray-500 text-xs sm:text-sm mt-1">
-                            Gérez et supervisez l'ensemble de vos données
-                        </p>
-                    </motion.div>
-                </div>
-
-                {/* Content Area - responsive avec overflow-x-auto */}
-                <div className="px-4 sm:px-6 md:px-10 pb-8 sm:pb-10 overflow-x-auto">
+                {/* CONTENU PRINCIPAL */}
+                <div className="px-3 sm:px-4 lg:px-6 py-4 sm:py-6">
                     <AnimatePresence mode="wait">
                         <motion.div
                             key={activeSection}
@@ -307,7 +307,6 @@ const Dashboard = () => {
                 </div>
             </main>
 
-            {/* Menu mobile */}
             <MobileMenu />
         </div>
     );
