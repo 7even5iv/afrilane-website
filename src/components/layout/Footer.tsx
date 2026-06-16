@@ -80,8 +80,8 @@ const Footer = () => {
     ];
 
     const contactInfo = [
-        { icon: FaPhoneAlt, text: "+237 222 31 16 01", href: "tel:+237222311601" },
-        { icon: FaMobileAlt, text: "+237 699 06 43 13", href: "tel:+237699064313" },
+        { icon: FaPhoneAlt, text: "+237 243 27 33 66", href: "tel:+237243273366" },
+        { icon: FaMobileAlt, text: "+237 699 46 34 24", href: "tel:+237699463424" },
         { icon: FaClock, text: "Lun - Sam : 08h00 - 18h00", isStatic: true }
     ];
 
@@ -194,7 +194,7 @@ const Footer = () => {
                                 <li className="flex items-start justify-center gap-3 group">
                                     <FaEnvelope className="text-blue-500 text-lg mt-1 group-hover:scale-110 transition-transform flex-shrink-0" />
                                     <a href="mailto:contact@afrilane.cm" className="hover:text-white transition-colors break-all text-left">
-                                        contact@afrilane.cm
+                                        hello@afrilane.cm
                                     </a>
                                 </li>
                             </ul>
